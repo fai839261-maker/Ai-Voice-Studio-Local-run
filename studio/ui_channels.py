@@ -211,6 +211,11 @@ class ChannelPages:
             self.ch_lock_now.clicked.connect(self.ch_lock_everything)
             top.addWidget(self.ch_lock_now)
             lay.addWidget(self.ch_header)
+            self.ch_note = QLabel("")                       # this software has no footer messages, so Channels shows its own short note
+            self.ch_note.setObjectName("badge")
+            self.ch_note.setWordWrap(True)
+            self.ch_note.hide()
+            lay.addWidget(self.ch_note, 0, Qt.AlignmentFlag.AlignLeft)
             self.ch_gate = QStackedWidget()
             self.ch_gate.addWidget(self._ch_lock_screen())
             self.ch_stack = QStackedWidget()
@@ -230,6 +235,14 @@ class ChannelPages:
         if index == 3:
             self.ch_fill_voice_pickers()
         self.refresh_channels()
+
+    def ch_say(self, text):
+        """A short message under the tabs; it disappears by itself after a few seconds."""
+        if not hasattr(self, "ch_note"):
+            return
+        self.ch_note.setText(text)
+        self.ch_note.setVisible(bool(text))
+        QTimer.singleShot(6000, lambda t=text: (self.ch_note.setVisible(False), self.ch_note.setText("")) if self.ch_note.text() == t else None)
 
     def ch_ask_text(self, title, text, password=False, value=""):
         """One place for every question box (tests replace it)."""
@@ -298,7 +311,7 @@ class ChannelPages:
             return
         if not self.channel_data.check_passcode(kind, self.ch_pass_edit.text()):
             self.ch_pass_edit.clear()
-            return self.toast("Wrong passcode. Try again.")
+            return self.ch_say("Wrong passcode. Try again.")
         if kind == "channels":
             active = self.channel_data.active()
             self._ch_open.add("ch:" + active["id"])
@@ -310,7 +323,7 @@ class ChannelPages:
     def ch_lock_everything(self):
         self._ch_open.clear()
         self.refresh_channels()
-        self.toast("Locked.")
+        self.ch_say("Locked.")
 
     def ch_owner_key_ok(self, text):
         from .owner import decode_key
@@ -331,7 +344,7 @@ class ChannelPages:
         if not self.ch_owner_key_ok(text):
             return self.alert("That is not the owner key, so the passcode was not removed.")
         self.channel_data.remove_passcode(kind)
-        self.toast("Passcode removed. Set a new one with the Passcode button.")
+        self.ch_say("Passcode removed. Set a new one with the Passcode button.")
         self.refresh_channels()
 
     def ch_passcode_dialog(self):
@@ -402,12 +415,12 @@ class ChannelPages:
             self.ch_pass_choose_channels()
         else:
             self._ch_open.add(kind)          # you just typed it, so you are not locked out of your own work
-        self.toast("Passcode saved.")
+        self.ch_say("Passcode saved.")
 
     def ch_pass_choose_channels(self):
         data = self.channel_data
         if not data.lock_on("channels"):
-            return self.toast("Set the passcode for chosen channels first.")
+            return self.ch_say("Set the passcode for chosen channels first.")
         dialog = QDialog(self)
         dialog.setWindowTitle("Choose channels to lock")
         lay = QVBoxLayout(dialog)
@@ -432,11 +445,11 @@ class ChannelPages:
 
     def ch_pass_remove(self, kind):
         if not self.channel_data.lock_on(kind):
-            return self.toast("This passcode is already off.")
+            return self.ch_say("This passcode is already off.")
         if not self.ch_pass_current_ok(kind):
             return
         self.channel_data.remove_passcode(kind)
-        self.toast("Passcode removed.")
+        self.ch_say("Passcode removed.")
 
     # ---------------------------------------------------------------- Channel Manager tab
     def _ch_manager_tab(self):
@@ -590,7 +603,7 @@ class ChannelPages:
     def ch_change_logo(self):
         active = self.channel_data.active()
         if not active:
-            return self.toast("Create a channel first.")
+            return self.ch_say("Create a channel first.")
         path, _ = QFileDialog.getOpenFileName(self, "Choose a logo", str(Path.home()), IMAGE_FILTER)
         if not path:
             return
@@ -616,9 +629,9 @@ class ChannelPages:
     # ---- copy helpers (copy buttons are everywhere in Channels)
     def ch_copy(self, text):
         if not (text or "").strip():
-            return self.toast("There is nothing to copy yet.")
+            return self.ch_say("There is nothing to copy yet.")
         QGuiApplication.clipboard().setText(text)
-        self.toast("Copied.")
+        self.ch_say("Copied.")
 
     def ch_copy_all_scripts(self):
         active = self.channel_data.active()
@@ -632,7 +645,7 @@ class ChannelPages:
         if not active:
             return
         if self.channel_data.lock_on("prompts") and "prompts" not in self._ch_open:
-            return self.toast("The Prompts tab is locked. Open it with the passcode first.")
+            return self.ch_say("The Prompts tab is locked. Open it with the passcode first.")
         self.ch_copy("\n\n".join(f"{ch.KINDS.get(p['kind'], p['kind'])} · {p['title']}\n\n{p['text']}" for p in active["prompts"] if p["text"].strip()))
 
     # ---- competitors
@@ -652,7 +665,7 @@ class ChannelPages:
     def ch_competitor_add(self):
         active = self.channel_data.active()
         if not active:
-            return self.toast("Create a channel first.")
+            return self.ch_say("Create a channel first.")
         asked = self.ch_competitor_dialog("Add competitor")
         if not asked:
             return
@@ -665,7 +678,7 @@ class ChannelPages:
     def ch_competitor_many(self):
         active = self.channel_data.active()
         if not active:
-            return self.toast("Create a channel first.")
+            return self.ch_say("Create a channel first.")
         text, ok = QInputDialog.getMultiLineText(self, "Add many competitors", "One per line: a name, a link, or “name - link”.")
         if not ok:
             return
@@ -675,13 +688,13 @@ class ChannelPages:
             if name or link:
                 self.channel_data.add_competitor(active["id"], name, link)
                 added += 1
-        self.toast(f"{added} competitor(s) added." if added else "Nothing to add.")
+        self.ch_say(f"{added} competitor(s) added." if added else "Nothing to add.")
         self.refresh_channels()
 
     def ch_competitor_edit(self):
         active, ids = self.channel_data.active(), self.ch_competitor_ids()
         if not active or not ids:
-            return self.toast("Select a competitor first.")
+            return self.ch_say("Select a competitor first.")
         entry = next((c for c in active.get("competitors", []) if c["id"] == ids[0]), None)
         asked = self.ch_competitor_dialog("Edit competitor", entry.get("name", ""), entry.get("link", "")) if entry else None
         if not asked:
@@ -695,7 +708,7 @@ class ChannelPages:
     def ch_competitor_remove(self):
         active, ids = self.channel_data.active(), self.ch_competitor_ids()
         if not active or not ids:
-            return self.toast("Select a competitor first.")
+            return self.ch_say("Select a competitor first.")
         for cid in ids:
             self.channel_data.remove_competitor(active["id"], cid)
         self.refresh_channels()
@@ -704,7 +717,7 @@ class ChannelPages:
         active, ids = self.channel_data.active(), self.ch_competitor_ids()
         entry = next((c for c in (active or {}).get("competitors", []) if ids and c["id"] == ids[0]), None)
         if not entry or not entry.get("link"):
-            return self.toast("Select a competitor that has a link.")
+            return self.ch_say("Select a competitor that has a link.")
         QDesktopServices.openUrl(QUrl(link_of(entry["link"])))
 
     def ch_competitor_copy_selected(self):
@@ -726,7 +739,7 @@ class ChannelPages:
     def ch_country_add(self):
         active = self.channel_data.active()
         if not active:
-            return self.toast("Create a channel first.")
+            return self.ch_say("Create a channel first.")
         name, ok = self.ch_ask_text("Add country", "Country name:")
         if not ok:
             return
@@ -739,7 +752,7 @@ class ChannelPages:
     def ch_country_remove(self):
         active, item = self.channel_data.active(), self.ch_country_list.currentItem()
         if not active or not item:
-            return self.toast("Select a country first.")
+            return self.ch_say("Select a country first.")
         if self.confirm("Remove country", f"Remove '{item.text()}'? Its scripts stay, they just have no country."):
             self.channel_data.remove_country(active["id"], item.text())
             if self.ch_country_filter == item.text():
@@ -873,7 +886,7 @@ class ChannelPages:
     def ch_new_script(self):
         active = self.channel_data.active()
         if not active:
-            return self.toast("Create a channel first.")
+            return self.ch_say("Create a channel first.")
         self.ch_save_script(quiet=True)
         script = self.channel_data.add_script(active["id"], "New script", "", country=self.ch_country_filter)
         self.refresh_channels(select=script["id"])
@@ -883,7 +896,7 @@ class ChannelPages:
     def ch_import_script(self):
         active = self.channel_data.active()
         if not active:
-            return self.toast("Create a channel first.")
+            return self.ch_say("Create a channel first.")
         paths, _ = QFileDialog.getOpenFileNames(self, "Import scripts", str(Path.home()), DOC_FILTER)
         last = None
         for path in paths:
@@ -914,7 +927,7 @@ class ChannelPages:
             self.channel_data.update_script(active["id"], shown, text=self.ch_text.toPlainText(), sections=[])
         self.channel_data.update_channel(active["id"], voice_direction=self.ch_direction.toPlainText())
         if not quiet:
-            self.toast("Script saved.")
+            self.ch_say("Script saved.")
             self.refresh_channels(select=shown)
 
     def ch_load_script(self):
@@ -953,7 +966,7 @@ class ChannelPages:
     def ch_copy_selected_scripts(self):
         active, ids = self.channel_data.active(), self.ch_ids()
         if not active or not ids:
-            return self.toast("Select one or more scripts first.")
+            return self.ch_say("Select one or more scripts first.")
         self.ch_save_script(quiet=True)
         parts = [self.channel_data.script(active["id"], i) for i in ids]
         self.ch_copy("\n\n".join(f"{s['title']}\n\n{s['text']}" for s in parts if s))
@@ -987,7 +1000,7 @@ class ChannelPages:
     def ch_split(self):
         active, script = self.ch_current()
         if not script:
-            return self.toast("Select a script first.")
+            return self.ch_say("Select a script first.")
         words, ok = QInputDialog.getInt(self, "Split by length", "Longest part (words):", 300, 50, 3000, 50)
         if not ok:
             return
@@ -1000,11 +1013,11 @@ class ChannelPages:
     def ch_send_vo(self, on):
         active, ids = self.channel_data.active(), self.ch_ids()
         if not active or not ids:
-            return self.toast("Select one or more scripts first.")
+            return self.ch_say("Select one or more scripts first.")
         self.ch_save_script(quiet=True)
         n = self.channel_data.set_vo(active["id"], ids, on)
         self.refresh_channels()
-        self.toast((f"{n} script(s) sent to Voice Overs." if on else f"{n} script(s) removed from Voice Overs.") if n else "Nothing changed.")
+        self.ch_say((f"{n} script(s) sent to Voice Overs." if on else f"{n} script(s) removed from Voice Overs.") if n else "Nothing changed.")
 
     # ---- sections inside one script (hidden until the first one is added)
     def ch_build_sections(self):
@@ -1037,7 +1050,7 @@ class ChannelPages:
 
     def ch_section_add(self):
         if not getattr(self, "_ch_shown", None):
-            return self.toast("Select a script first.")
+            return self.ch_say("Select a script first.")
         name, ok = self.ch_ask_text("Add section", "Section name:", False, f"Section {len(self._ch_sections) + 1 if self._ch_sections else 2}")
         if not ok:
             return
@@ -1049,7 +1062,7 @@ class ChannelPages:
 
     def ch_section_rename(self):
         if not self._ch_sections:
-            return self.toast("This script has no sections.")
+            return self.ch_say("This script has no sections.")
         sec = self._ch_sections[self._ch_sec_index]
         name, ok = self.ch_ask_text("Rename section", "Section name:", False, sec["title"])
         if ok and name.strip():
@@ -1062,7 +1075,7 @@ class ChannelPages:
 
     def ch_section_delete(self):
         if not self._ch_sections:
-            return self.toast("This script has no sections.")
+            return self.ch_say("This script has no sections.")
         sec = self._ch_sections[self._ch_sec_index]
         if not self.confirm("Delete section", f"Delete the section '{sec['title']}' and its text?"):
             return
@@ -1078,7 +1091,7 @@ class ChannelPages:
 
     def ch_section_join(self):
         if not self._ch_sections:
-            return self.toast("This script has no sections.")
+            return self.ch_say("This script has no sections.")
         joined = self.channel_data.sections_text(self._ch_sections)
         self._ch_sections = []
         self._ch_sec_index = 0
@@ -1154,7 +1167,7 @@ class ChannelPages:
         if ids:
             self.ch_generate(ids[:1], start=self.ch_autostart.isChecked())
         else:
-            self.toast("Select a script first.")
+            self.ch_say("Select a script first.")
 
     def ch_queue_selected(self):
         self.ch_save_script(quiet=True)
@@ -1162,7 +1175,7 @@ class ChannelPages:
         if ids:
             self.ch_generate(ids, start=self.ch_autostart.isChecked())
         else:
-            self.toast("Select one or more scripts first.")
+            self.ch_say("Select one or more scripts first.")
 
     def ch_voice_for(self, channel, script=None):
         """The voice chosen for this script, else the channel's main voice, else the voice chosen in the Studio."""
@@ -1203,7 +1216,7 @@ class ChannelPages:
             self.pump_jobs()
         if made:
             self.refresh_queue()
-            self.toast(f"{len(made)} voice-over(s) " + ("started." if start else "added to the queue."))
+            self.ch_say(f"{len(made)} voice-over(s) " + ("started." if start else "added to the queue."))
         self.refresh_channels(select=script_ids[0] if script_ids else None)
         return made
 
@@ -1258,7 +1271,7 @@ class ChannelPages:
         else:
             self.channel_data.add_prompt(active["id"], kind, ch.KINDS[kind], text)
         self.refresh_channels()
-        self.toast("Prompt saved.")
+        self.ch_say("Prompt saved.")
 
     def ch_prompt_new(self, kind):
         active = self.channel_data.active()
@@ -1274,7 +1287,7 @@ class ChannelPages:
         if active and pid:
             self.channel_data.apply_prompt(active["id"], pid)
             self.refresh_channels()
-            self.toast("This prompt is now the one in use.")
+            self.ch_say("This prompt is now the one in use.")
 
     def ch_prompt_delete(self, kind):
         active, pid = self.channel_data.active(), self.ch_prompt_id(kind)
@@ -1427,17 +1440,17 @@ class ChannelPages:
     def ch_add_voice(self, role, from_picker=False):
         active = self.channel_data.active()
         if not active:
-            return self.toast("Create a channel first.")
+            return self.ch_say("Create a channel first.")
         if from_picker:
             row = self.ch_vm_voice.currentData()
             if not row:
-                return self.toast("Choose a model and a voice first.")
+                return self.ch_say("Choose a model and a voice first.")
             model, voice, name = row["model"], row["voice"], row["name"]
         else:
             model, voice = self.model_combo.currentData(), self.voice_combo.currentData()
             name = self.voice_combo.currentText().split("  ·  ")[0]
         if not model or not voice:
-            return self.toast("Pick a voice in the Studio first.")
+            return self.ch_say("Pick a voice in the Studio first.")
         try:
             self.channel_data.assign_voice(active["id"], model, voice, name, role)
         except ValueError as exc:
@@ -1454,7 +1467,7 @@ class ChannelPages:
             self.channel_data.remove_voice(active["id"], v["model"], v["voice"])
             self.refresh_channels()
         else:
-            self.toast("Choose a voice in the list first.")
+            self.ch_say("Choose a voice in the list first.")
 
     def ch_listen_voice(self):
         v = self.ch_selected_voice()
@@ -1462,7 +1475,7 @@ class ChannelPages:
             row = self.ch_vm_voice.currentData()
             v = {"model": row["model"], "voice": row["voice"], "name": row["name"]} if row else None
         if not v:
-            return self.toast("Choose a voice first.")
+            return self.ch_say("Choose a voice first.")
         entry = models().get(v["model"], {})
         row = {"kind": entry.get("kind", "tts"), "model": v["model"], "voice": v["voice"], "name": v["name"], "language": ""}
         self.library_listen(row)
@@ -1490,7 +1503,7 @@ class ChannelPages:
         for s in self.channel_data.vo_scripts(active["id"]):
             self.channel_data.update_script(active["id"], s["id"], voice=value)
         self.refresh_channels()
-        self.toast("Voice set for all scripts in the list.")
+        self.ch_say("Voice set for all scripts in the list.")
 
     def ch_generate_vo(self):
         active = self.channel_data.active()
@@ -1501,13 +1514,13 @@ class ChannelPages:
             jobs = self.ch_jobs()
             ids = [s["id"] for s in self.channel_data.vo_scripts(active["id"]) if self.ch_script_state(active, s, jobs) not in ("Done", "Processing", "In queue")]
         if not ids:
-            return self.toast("No script is waiting. Send scripts from the Scripts tab, or select the ones to make again.")
+            return self.ch_say("No script is waiting. Send scripts from the Scripts tab, or select the ones to make again.")
         self.ch_generate(ids, start=True)
 
     def ch_vo_remove(self):
         active, ids = self.channel_data.active(), self.ch_vo_ids()
         if not active or not ids:
-            return self.toast("Select one or more scripts in the list first.")
+            return self.ch_say("Select one or more scripts in the list first.")
         self.channel_data.set_vo(active["id"], ids, False)
         self.refresh_channels()
 
@@ -1521,7 +1534,7 @@ class ChannelPages:
         item = self.ch_vo_table.item(row, 0) if row >= 0 else None
         job = self.store.job(item.data(Qt.ItemDataRole.UserRole)) if item else None
         if not job or not job.get("output") or not Path(job["output"]).is_file():
-            return self.toast("Select a finished voice over first.")
+            return self.ch_say("Select a finished voice over first.")
         self.ch_player.load(job["output"], play=True)
         self.ch_player.set_note(job["title"])
 
@@ -1547,7 +1560,7 @@ class ChannelPages:
     def ch_start_waiting(self):
         waiting = [j["id"] for j, _ in self.ch_jobs() if j["status"] != "completed" and j["id"] not in self.running and j["id"] not in getattr(self, "pending_jobs", [])]
         if not waiting:
-            return self.toast("Nothing is waiting for this channel.")
+            return self.ch_say("Nothing is waiting for this channel.")
         self.pending_jobs = getattr(self, "pending_jobs", []) + waiting
         self.pump_jobs()
 

@@ -16,6 +16,7 @@ import time
 import zipfile
 from pathlib import Path
 
+MAX_KEEP = 3                 # old versions kept on this PC (the newest three)
 API = 1                      # bump only when an update needs a new installer (new libraries etc.)
 LAYERS = ("studio", "runtime", "resources")
 STAMP = "%Y%m%d-%H%M%S"
@@ -131,7 +132,60 @@ def archive_current(reason: str = "") -> Path | None:
         counter += 1
     shutil.move(str(current), str(target))
     _log(f"Layer {name} saved to history. {reason}")
+    prune(history_dir())
     return target
+
+
+def _stamp_key(path: Path) -> str:
+    import re
+    found = re.search(r"(\d{8}-\d{6})(?:-(\d+))?$", path.name)
+    return (found.group(1) + "-" + (found.group(2) or "0").zfill(3)) if found else "00000000-000000-000"
+
+
+def prune(folder: Path, keep: int = MAX_KEEP) -> None:
+    """Keep only the newest `keep` saved versions in a folder."""
+    try:
+        items = sorted((p for p in Path(folder).iterdir() if p.is_dir()), key=_stamp_key, reverse=True)
+    except OSError:
+        return
+    for old in items[keep:]:
+        shutil.rmtree(old, ignore_errors=True)
+        _log(f"Old saved version {old.name} removed (only the newest {keep} are kept).")
+
+
+def newest_history() -> list:
+    try:
+        items = [p for p in history_dir().iterdir() if p.is_dir() and read_manifest(p)]
+    except OSError:
+        return []
+    return sorted(items, key=_stamp_key, reverse=True)
+
+
+def rollback_previous(reason: str) -> str:
+    """The current update does not work: put it aside and bring back the version before it. Returns that version ('' = the original program)."""
+    failing = str((read_manifest(overlay_dir()) or {}).get("version", "unknown"))
+    quarantine(reason)
+    prune(updates_dir() / "quarantine")
+    for entry in newest_history():
+        try:
+            shutil.move(str(entry), str(overlay_dir()))
+        except OSError:
+            continue
+        _save_boot({})
+        version = str((read_manifest(overlay_dir()) or {}).get("version", "unknown"))
+        text = f"Version {failing} did not start properly, so the software went back to version {version} by itself."
+        _log(text)
+        _notice(text)
+        return version
+    _notice(f"Version {failing} did not start properly, so the software went back to the original installed version by itself.")
+    return ""
+
+
+def _notice(text: str) -> None:
+    try:
+        (updates_dir() / "notice.txt").write_text(text, encoding="utf-8")
+    except OSError:
+        pass
 
 
 def quarantine(reason: str) -> None:
@@ -159,6 +213,10 @@ def activate():
     if "--reset-updates" in sys.argv:
         quarantine("Reset by the user (--reset-updates).")
     apply_pending()
+    return _load_layer(0)
+
+
+def _load_layer(depth: int):
     folder = overlay_dir()
     manifest = read_manifest(folder)
     if not manifest:
@@ -176,7 +234,9 @@ def activate():
         return None
     state = _boot_state()
     if int(state.get("unconfirmed", 0)) >= 2:
-        quarantine(f"The program did not start twice in a row with update {manifest.get('version')}.")
+        restored = rollback_previous(f"The program did not start twice in a row with update {manifest.get('version')}.")
+        if restored and depth < MAX_KEEP + 1:
+            return _load_layer(depth + 1)          # the version before is checked the same way
         return None
     state["unconfirmed"] = int(state.get("unconfirmed", 0)) + 1
     _save_boot(state)

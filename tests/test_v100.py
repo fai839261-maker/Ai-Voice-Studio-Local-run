@@ -141,7 +141,7 @@ class GitHub(IsolatedHome):
         fetch=lambda url:s.release(['notes.txt','AVS_Update_9.9.9.zip','AVS_Update_9.9.10.zip','AVS_Setup.exe'])
         r=updater.latest_release('o/r',fetch);s.assertEqual((r['version'],r['name']),('9.9.10','AVS_Update_9.9.10.zip'))
         s.assertIsNone(updater.latest_release('o/r',lambda u:s.release(['x.zip'])))
-        s.assertEqual(updater.check_online(s.store,fetch)['status'],'no_repo');s.store.set_setting('update_repo','o/r')
+        s.store.set_setting('update_repo','o/r')
         updater.APP_VERSION='9.0.0';res=updater.check_online(s.store,fetch);s.assertEqual(res['status'],'newer');s.assertEqual(s.store.setting('update_available'),'9.9.10')
         updater.APP_VERSION='9.9.10';s.assertEqual(updater.check_online(s.store,fetch)['status'],'current');s.assertEqual(s.store.setting('update_available'),'')
         s.assertEqual(updater.check_online(s.store,lambda u:s.release([]))['status'],'none')
@@ -149,7 +149,7 @@ class GitHub(IsolatedHome):
         s.assertEqual(updater.clean_repo('https://github.com/unzip/spark.git'),'unzip/spark');s.assertEqual(updater.clean_repo(' unzip/spark '),'unzip/spark')
         for bad in ('','nope','https://evil.com/a/b','a/b/c/d e'):
             with s.assertRaises(updater.UpdateError):updater.clean_repo(bad)
-        st=Store();s.assertFalse(updater.auto_check_due(st,1e9));st.d['update_repo']='o/r';s.assertTrue(updater.auto_check_due(st,1e9));st.d['update_last_check']=1e9
+        st=Store();s.assertTrue(updater.auto_check_due(st,1e9));st.d['update_repo']='o/r';s.assertTrue(updater.auto_check_due(st,1e9));st.d['update_last_check']=1e9
         s.assertFalse(updater.auto_check_due(st,1e9+3600));s.assertTrue(updater.auto_check_due(st,1e9+90000));st.d['update_auto_check']=False;s.assertFalse(updater.auto_check_due(st,1e12))
     def test_only_github_hosts_are_downloaded(s):
         with s.assertRaisesRegex(updater.UpdateError,'not hosted on GitHub'):updater.download_release({'url':'https://evil.example.com/AVS_Update_1.0.zip','name':'AVS_Update_1.0.zip'},Path(tempfile.mkdtemp()))
@@ -636,9 +636,9 @@ class OwnerWindow(unittest.TestCase):
         os.environ['AI_VOICE_STUDIO_HOME']=str(home);os.environ['AVS_OWNER_KEY_FILE']=str(keyfile)
         app=QApplication.instance() or QApplication([])
         from studio.ui_v5 import StudioWindow
-        w=StudioWindow()
+        w=StudioWindow();w.access.open_to_all=False;w.apply_access()      # 0.22 opens everything to everyone; this test checks the old key rules
         try:
-            s.assertTrue(w.access.key_mode);s.assertFalse(w.access.is_owner);s.assertEqual(w.settings_tabs.count(),5);s.assertNotIn('Owner',[w.settings_tabs.tabText(i) for i in range(5)])
+            s.assertTrue(w.access.key_mode);s.assertFalse(w.access.is_owner);s.assertEqual(w.settings_tabs.count(),6);s.assertNotIn('Owner',[w.settings_tabs.tabText(i) for i in range(5)])
             s.assertFalse(w.settings_tabs.isTabVisible(2));s.assertIn('Owner login',w.owner_button.text())
             # wrong then right key
             w.ask_password=lambda *a,**k:'AVS-WRONG';warned=[];import PySide6.QtWidgets as W;orig=W.QMessageBox.warning;W.QMessageBox.warning=staticmethod(lambda *a,**k:warned.append(a[2]))

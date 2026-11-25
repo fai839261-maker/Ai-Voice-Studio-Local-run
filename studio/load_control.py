@@ -165,7 +165,7 @@ def apply_level_settings(store, name: str) -> dict:
         "cpu_threads_override": threads,
         "parts_at_once": (p["parts"] if (p["parts"] != "auto" or hw["gpu"]) else 1),
         "preload_voice": bool(p["preload"] and (hw["gpu"] or hw["ram_gb"] >= 15)),
-        "auto_samples": bool(p["samples"]),
+        "auto_samples": False,        # voice samples are made only when you ask (0.22)
         "keep_model_warm": bool(p["warm"]),
     }
     for key, value in values.items():

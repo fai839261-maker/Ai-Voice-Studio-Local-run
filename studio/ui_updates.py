@@ -455,19 +455,14 @@ class UpdatePages:
         ml.addWidget(self.upd_restart)
         self.gate("set.update", main)
 
-        source, sl = card("Update source")
-        self.upd_repo = QLineEdit(str(self.store.setting("update_repo", "") or ""))
-        self.upd_repo.setPlaceholderText("GitHub address, for example unzipspark/voice-studio")
-        row = QHBoxLayout()
-        row.setSpacing(10)
-        row.addWidget(self.upd_repo, 1)
-        row.addWidget(button("Save", self.save_update_source, True))
-        sl.addLayout(row)
+        source, sl = card("Automatic checking")
+        self.upd_repo = QLineEdit(updater.update_repo())          # the address is built into the program (kept only for older code)
+        self.upd_repo.hide()
+        sl.addWidget(label(f"You have version {APP_VERSION}. Updates come from github.com/{updater.update_repo()}. Nothing is installed without you pressing the button.", "muted"))
         self.upd_auto = QCheckBox("Look for updates automatically once a day")
         self.upd_auto.setChecked(bool(self.store.setting("update_auto_check", True)))
         self.upd_auto.toggled.connect(lambda on: self.store.set_setting("update_auto_check", bool(on)))
         sl.addWidget(self.upd_auto)
-        self.gate("access.manager", source)
         return [main, source]
 
     def upd_log_add(self, text):
@@ -495,10 +490,6 @@ class UpdatePages:
 
     # ---- checking GitHub
     def check_updates(self, silent: bool = False):
-        if not self.store.setting("update_repo", ""):
-            if not silent:
-                self.upd_status.setText("No update address is set. The owner can add one under Update source, or use Install update file…")
-            return
         self._silent_check = silent
         if not silent:
             self.upd_status.setText("Checking GitHub…")
@@ -519,7 +510,7 @@ class UpdatePages:
         release = result.get("release")
         if status == "newer":
             self._release = release
-            self.upd_status.setText(f"Version {release['version']} is available. " + (release.get("notes", "").strip().splitlines() or [""])[0][:160])
+            self.upd_status.setText(f"Update available: version {release['version']}")
             self.upd_get.setText(f"Download and install version {release['version']}")
             self.upd_get.show()
             self.settings_tabs.setTabText(3, "Updates •")
@@ -529,10 +520,12 @@ class UpdatePages:
         elif silent:
             return
         elif status == "current":
-            self.upd_status.setText(f"You have the latest version ({APP_VERSION}).")
+            self.upd_status.setText("Already latest update installed.")
             self.settings_tabs.setTabText(3, "Updates")
         elif status == "none":
-            self.upd_status.setText("No update file was found on the latest GitHub release. Attach AVS_Update_x.y.z.zip to the release.")
+            self.upd_status.setText("Already latest update installed.")
+            self.upd_log_add("The latest GitHub release has no update file attached.")
+            self.settings_tabs.setTabText(3, "Updates")
         elif status == "no_repo":
             self.upd_status.setText("No update address is set.")
         else:
@@ -686,6 +679,11 @@ class UpdatePages:
     def restart_app(self):
         """Start the program again (it applies the prepared change first) and close this copy completely."""
         from . import shutdown
+        try:
+            import avs_boot
+            avs_boot.mark_good()
+        except Exception:
+            pass
         flags = [a for a in sys.argv[1:] if a != "--restarted"]
         command = [sys.executable] + ([] if getattr(sys, "frozen", False) else [str(Path(sys.argv[0]).resolve())]) + flags + ["--restarted"]
         try:

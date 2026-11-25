@@ -1,17 +1,6 @@
 name: Build Windows Inno Setup installer
 on:
-  workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'main.py'
-      - 'studio/**'
-      - 'runtime/**'
-      - 'resources/**'
-      - 'installer/**'
-      - 'Build-Windows.ps1'
-      - 'requirements-gui.txt'
-      - '.github/workflows/build-windows.yml'
+  workflow_dispatch:      # 0.22: runs only when you press Run workflow on GitHub (Actions tab); a normal upload no longer starts it
 
 jobs:
   build:
@@ -44,7 +33,7 @@ jobs:
         with:
           name: AI-Voice-Studio-Windows-Setup
           path: |
-            BuildOut/AI_Voice_Studio_Setup_0.21.0.exe
-            BuildOut/AI_Voice_Studio_Setup_0.21.0.exe.sha256.txt
-            BuildOut/AI_Voice_Studio_Update_0.21.0.zip
+            BuildOut/AI_Voice_Studio_Setup_0.22.0.exe
+            BuildOut/AI_Voice_Studio_Setup_0.22.0.exe.sha256.txt
+            BuildOut/AI_Voice_Studio_Update_0.22.0.zip
           if-no-files-found: error

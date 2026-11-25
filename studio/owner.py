@@ -299,9 +299,11 @@ class Access:
         return hmac.compare_digest(_hash(password, salt, iterations), str(self.data["hash"]))
 
     # ---- mode --------------------------------------------------------------
+    open_to_all = False        # 0.22: the program switches this on, so nobody needs an owner key to see or use anything
+
     @property
     def is_owner(self) -> bool:
-        return self.mode == "owner"
+        return self.open_to_all or self.mode == "owner"
 
     def enter_owner(self, password: str) -> bool:
         if self.key_mode:
@@ -331,6 +333,8 @@ class Access:
 
     def state(self, key: str) -> str:
         """Effective state for this session. The owner always has full access."""
+        if self.open_to_all:
+            return SHOW
         if key == "set.backup":
             return SHOW if self.backup_allowed() else HIDE
         if key in OWNER_ONLY:

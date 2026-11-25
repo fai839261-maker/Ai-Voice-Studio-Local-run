@@ -1,0 +1,678 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261125140225
+Username: DESKTOP-A8FJSGA\Unzip Studio
+RunAs User: DESKTOP-A8FJSGA\Unzip Studio
+Configuration Name: 
+Machine: DESKTOP-A8FJSGA (Microsoft Windows NT 10.0.26300.0)
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\Build-Windows.ps1
+Process ID: 19468
+PSVersion: 5.1.26100.10068
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.10068
+BuildVersion: 10.0.26100.10068
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+===== AI VOICE STUDIO - WINDOWS BUILD =====
+Using build interpreter: C:\Users\Unzip Studio\AppData\Local\Programs\Python\Python311\python.exe
+No broken requirements found.
+Reusing existing compatible build packages; no package download required.
+248 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.10
+248 INFO: Python: 3.11.9
+248 INFO: Platform: Windows-10-10.0.26300-SP0
+248 INFO: Python environment: C:\Users\Unzip Studio\AppData\Local\AVS\build-tools\.build-venv
+248 INFO: wrote C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\AVS_Move_Helper.spec
+806 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\Unzip '
+ 'Studio\\Downloads\\AI_Voice_Studio_COMPLETE_0_22_0\\AI_Voice_Studio_Project',
+ 'C:\\Users\\Unzip '
+ 'Studio\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\Programs\\Python\\Python311\\DLLs',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\Programs\\Python\\Python311\\Lib',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\Programs\\Python\\Python311',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv',
+ 'C:\\Users\\Unzip '
+ 'Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages',
+ 'C:\\Users\\Unzip '
+ 'Studio\\Downloads\\AI_Voice_Studio_COMPLETE_0_22_0\\AI_Voice_Studio_Project']
+1169 INFO: Appending 'datas' from .spec
+1169 INFO: checking Analysis
+1169 INFO: Building Analysis because Analysis-00.toc is non existent
+1169 INFO: Looking for Python shared library...
+1169 INFO: Using Python shared library: C:\Users\Unzip Studio\AppData\Local\Programs\Python\Python311\python311.dll
+1169 INFO: Running Analysis Analysis-00.toc
+1169 INFO: Target bytecode optimization level: 0
+1169 INFO: Initializing module dependency graph...
+1169 INFO: Initializing module graph hook caches...
+1212 INFO: Analyzing modules for base_library.zip ...
+2408 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2503 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+3962 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+4432 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7215 INFO: Caching module dependency graph...
+7248 INFO: Analyzing C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\studio\move_worker.py
+7289 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7303 INFO: Processing standard module hook 'hook-sqlite3.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7876 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+8082 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+8560 INFO: Processing standard module hook 'hook-psutil.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+8625 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+8625 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+9021 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+9071 INFO: Analyzing hidden import 'psutil._psaix'
+9126 INFO: Analyzing hidden import 'psutil._psbsd'
+9251 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+9254 INFO: Analyzing hidden import 'psutil._pslinux'
+9330 INFO: Analyzing hidden import 'psutil._psosx'
+9351 INFO: Analyzing hidden import 'psutil._pssunos'
+9379 INFO: Processing module hooks (post-graph stage)...
+9745 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+9745 INFO: Performing binary vs. data reclassification (940 entries)
+15374 INFO: Looking for ctypes DLLs
+15415 INFO: Analyzing run-time hooks ...
+15415 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15431 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15447 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15447 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15495 INFO: Creating base_library.zip...
+15511 INFO: Looking for dynamic libraries
+15733 INFO: Extra DLL search directories (AddDllDirectory): []
+15733 INFO: Extra DLL search directories (PATH): []
+16083 INFO: Warnings written to C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AVS_Move_Helper\warn-AVS_Move_Helper.txt
+16109 INFO: Graph cross-reference written to C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AVS_Move_Helper\xref-AVS_Move_Helper.html
+16176 INFO: checking PYZ
+16176 INFO: Building PYZ because PYZ-00.toc is non existent
+16176 INFO: Building PYZ (ZlibArchive) C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AVS_Move_Helper\PYZ-00.pyz
+16389 INFO: Building PYZ (ZlibArchive) C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AVS_Move_Helper\PYZ-00.pyz completed successfully.
+16408 INFO: checking PKG
+16408 INFO: Building PKG because PKG-00.toc is non existent
+16408 INFO: Building PKG (CArchive) AVS_Move_Helper.pkg
+19420 INFO: Building PKG (CArchive) AVS_Move_Helper.pkg completed successfully.
+19442 INFO: Bootloader C:\Users\Unzip Studio\AppData\Local\AVS\build-tools\.build-venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+19442 INFO: checking EXE
+19442 INFO: Building EXE because EXE-00.toc is non existent
+19442 INFO: Building EXE from EXE-00.toc
+19442 INFO: Copying bootloader EXE to C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\dist\AVS_Move_Helper.exe
+19538 INFO: Copying icon to EXE
+19585 INFO: Copying 0 resources to EXE
+19585 INFO: Embedding manifest in EXE
+19617 INFO: Appending PKG archive to EXE
+19680 INFO: Fixing EXE headers
+19934 INFO: Building EXE from EXE-00.toc completed successfully.
+19950 INFO: Build complete! The results are available in: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\dist
+174 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.10
+174 INFO: Python: 3.11.9
+190 INFO: Platform: Windows-10-10.0.26300-SP0
+190 INFO: Python environment: C:\Users\Unzip Studio\AppData\Local\AVS\build-tools\.build-venv
+190 INFO: wrote C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\AI_Voice_Studio.spec
+1785 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\Unzip '
+ 'Studio\\Downloads\\AI_Voice_Studio_COMPLETE_0_22_0\\AI_Voice_Studio_Project',
+ 'C:\\Users\\Unzip '
+ 'Studio\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\Programs\\Python\\Python311\\DLLs',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\Programs\\Python\\Python311\\Lib',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\Programs\\Python\\Python311',
+ 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv',
+ 'C:\\Users\\Unzip '
+ 'Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages',
+ 'C:\\Users\\Unzip '
+ 'Studio\\Downloads\\AI_Voice_Studio_COMPLETE_0_22_0\\AI_Voice_Studio_Project']
+2150 INFO: Appending 'datas' from .spec
+2166 INFO: checking Analysis
+2166 INFO: Building Analysis because Analysis-00.toc is non existent
+2166 INFO: Looking for Python shared library...
+2166 INFO: Using Python shared library: C:\Users\Unzip Studio\AppData\Local\Programs\Python\Python311\python311.dll
+2166 INFO: Running Analysis Analysis-00.toc
+2166 INFO: Target bytecode optimization level: 0
+2166 INFO: Initializing module dependency graph...
+2166 INFO: Initializing module graph hook caches...
+2181 INFO: Analyzing modules for base_library.zip ...
+3448 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+4908 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5023 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+6004 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+6344 INFO: Caching module dependency graph...
+6381 INFO: Analyzing C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\main.py
+6434 INFO: Processing standard module hook 'hook-sqlite3.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+6836 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7187 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7235 INFO: Processing standard module hook 'hook-PySide6.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7518 INFO: Processing standard module hook 'hook-shiboken6.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7724 INFO: Processing standard module hook 'hook-PySide6.QtNetwork.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10131 INFO: Processing standard module hook 'hook-PySide6.QtCore.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+13044 INFO: Processing standard module hook 'hook-PySide6.QtGui.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+25053 INFO: Processing standard module hook 'hook-psutil.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+25764 INFO: Processing standard module hook 'hook-PySide6.QtWidgets.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+28369 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+28433 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+28892 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+28892 INFO: SetuptoolsInfo: initializing cached setuptools info...
+29634 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+29825 INFO: Processing standard module hook 'hook-imageio_ffmpeg.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+29841 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+30268 INFO: Processing standard module hook 'hook-PySide6.QtMultimedia.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+32721 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+33273 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+33275 INFO: Analyzing hidden import 'glob'
+33287 INFO: Analyzing hidden import 'psutil._psaix'
+33303 INFO: Analyzing hidden import 'psutil._psbsd'
+33319 INFO: Analyzing hidden import 'psutil._pslinux'
+33383 INFO: Analyzing hidden import 'psutil._psosx'
+33383 INFO: Analyzing hidden import 'psutil._pssunos'
+33399 INFO: Analyzing hidden import 'imageio_ffmpeg.binaries'
+33416 INFO: Analyzing hidden import 'certifi.__main__'
+33427 INFO: Analyzing hidden import 'certifi.tests'
+33429 INFO: Analyzing hidden import 'certifi.tests.test_certify'
+34244 INFO: Processing module hooks (post-graph stage)...
+34272 INFO: Processing standard module hook 'hook-PySide6.QtMultimediaWidgets.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+34670 INFO: Performing binary vs. data reclassification (323 entries)
+35967 INFO: Looking for ctypes DLLs
+36046 INFO: Analyzing run-time hooks ...
+36046 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+36046 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+36046 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+36046 INFO: Including run-time hook 'pyi_rth_pyside6.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+36062 INFO: Processing pre-find-module-path hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+36081 INFO: Processing standard module hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PyInstaller\\hooks'
+36109 INFO: Creating base_library.zip...
+36125 INFO: Looking for dynamic libraries
+36570 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\shiboken6']
+36570 INFO: Extra DLL search directories (PATH): ['C:\\Users\\Unzip Studio\\AppData\\Local\\AVS\\build-tools\\.build-venv\\Lib\\site-packages\\PySide6']
+37889 INFO: Warnings written to C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AI_Voice_Studio\warn-AI_Voice_Studio.txt
+37930 INFO: Graph cross-reference written to C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AI_Voice_Studio\xref-AI_Voice_Studio.html
+37962 INFO: checking PYZ
+37962 INFO: Building PYZ because PYZ-00.toc is non existent
+37962 INFO: Building PYZ (ZlibArchive) C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AI_Voice_Studio\PYZ-00.pyz
+38291 INFO: Building PYZ (ZlibArchive) C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AI_Voice_Studio\PYZ-00.pyz completed successfully.
+38291 INFO: checking PKG
+38291 INFO: Building PKG because PKG-00.toc is non existent
+38291 INFO: Building PKG (CArchive) AI_Voice_Studio.pkg
+38327 INFO: Building PKG (CArchive) AI_Voice_Studio.pkg completed successfully.
+38329 INFO: Bootloader C:\Users\Unzip Studio\AppData\Local\AVS\build-tools\.build-venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+38329 INFO: checking EXE
+38329 INFO: Building EXE because EXE-00.toc is non existent
+38329 INFO: Building EXE from EXE-00.toc
+38329 INFO: Copying bootloader EXE to C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\build\AI_Voice_Studio\AI_Voice_Studio.exe
+38355 INFO: Copying icon to EXE
+38403 INFO: Copying 0 resources to EXE
+38403 INFO: Embedding manifest in EXE
+38446 INFO: Appending PKG archive to EXE
+38483 INFO: Fixing EXE headers
+38738 INFO: Building EXE from EXE-00.toc completed successfully.
+38738 INFO: checking COLLECT
+38738 INFO: Building COLLECT because COLLECT-00.toc is non existent
+38738 INFO: Building COLLECT COLLECT-00.toc
+39450 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+39463 INFO: Build complete! The results are available in: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\dist
+Testing bundled resources from the compiled Windows executable...
+Compiling with: C:\Users\Unzip Studio\AppData\Local\Programs\Inno Setup 6\ISCC.exe
+Inno Setup 6 Command-Line Compiler
+Copyright (C) 1997-2026 Jordan Russell. All rights reserved.
+Portions Copyright (C) 2000-2026 Martijn Laan. All rights reserved.
+Portions Copyright (C) 2001-2004 Alex Yackimoff. All rights reserved.
+https://www.innosetup.com
+
+Compiler engine version: Inno Setup 6.7.3
+Non-commercial use only
+
+Preprocessing
+   Reading file: C:\Users\Unzip Studio\AppData\Local\Programs\Inno Setup 6\ISPPBuiltins.iss
+Parsing [Setup] section, line 8
+Parsing [Setup] section, line 9
+Parsing [Setup] section, line 10
+Parsing [Setup] section, line 11
+Parsing [Setup] section, line 12
+Parsing [Setup] section, line 13
+Parsing [Setup] section, line 14
+Parsing [Setup] section, line 15
+Parsing [Setup] section, line 16
+Parsing [Setup] section, line 17
+Parsing [Setup] section, line 18
+Parsing [Setup] section, line 19
+Parsing [Setup] section, line 20
+Parsing [Setup] section, line 21
+Parsing [Setup] section, line 22
+Parsing [Setup] section, line 23
+Parsing [Setup] section, line 24
+Parsing [Setup] section, line 25
+Parsing [Setup] section, line 26
+Parsing [Setup] section, line 27
+Parsing [Setup] section, line 28
+Parsing [Setup] section, line 29
+Parsing [Setup] section, line 30
+Parsing [Setup] section, line 31
+Parsing [Setup] section, line 32
+Reading file (WizardImageFile)
+Reading file (WizardSmallImageFile)
+Preparing Setup program executable
+   Verification successful
+   Updating icons (Setup.e32)
+   Updating version info (Setup.e32)
+Determining language code pages
+   Reading file: C:\Users\Unzip Studio\AppData\Local\Programs\Inno Setup 6\Default.isl
+   Messages in script file
+Reading default messages from Default.isl
+Parsing [LangOptions], [Messages], and [CustomMessages] sections
+   Reading file: C:\Users\Unzip Studio\AppData\Local\Programs\Inno Setup 6\Default.isl
+   Messages in script file
+Reading [Code] section
+Parsing [Tasks] section, line 49
+Parsing [Icons] section, line 45
+Parsing [Icons] section, line 46
+Parsing [InstallDelete] section, line 40
+Parsing [InstallDelete] section, line 41
+Parsing [InstallDelete] section, line 42
+Parsing [Run] section, line 52
+Parsing [UninstallRun] section, line 55
+Parsing [Files] section, line 35
+Parsing [Files] section, line 36
+Compiling [Code] section
+Creating setup files
+   Verification successful
+   Updating icons (Setup.exe)
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\base_library.zip
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\libcrypto-3.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\libffi-8.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\libssl-3.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\pyexpat.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\python3.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\python311.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\select.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\sqlite3.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\unicodedata.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\VCRUNTIME140.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\VCRUNTIME140_1.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_asyncio.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_bz2.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_ctypes.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_decimal.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_elementtree.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_hashlib.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_lzma.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_multiprocessing.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_overlapped.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_queue.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_socket.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_sqlite3.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_ssl.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\_uuid.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi\cacert.pem
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi\core.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi\py.typed
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi\__main__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi\tests\test_certify.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi\tests\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi-2026.11.20.dist-info\INSTALLER
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi-2026.11.20.dist-info\METADATA
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi-2026.11.20.dist-info\RECORD
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi-2026.11.20.dist-info\REQUESTED
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi-2026.11.20.dist-info\top_level.txt
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi-2026.11.20.dist-info\WHEEL
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\certifi-2026.11.20.dist-info\licenses\LICENSE
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\_definitions.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\_io.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\_parsing.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\_utils.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\binaries\ffmpeg-win-x86_64-v9.0.2.exe
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\binaries\README.md
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg\binaries\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg-0.8.1.dist-info\INSTALLER
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg-0.8.1.dist-info\METADATA
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg-0.8.1.dist-info\RECORD
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg-0.8.1.dist-info\REQUESTED
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg-0.8.1.dist-info\top_level.txt
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg-0.8.1.dist-info\WHEEL
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\imageio_ffmpeg-0.8.1.dist-info\licenses\LICENSE
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_common.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_ntuples.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_psaix.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_psbsd.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_pslinux.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_psosx.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_psposix.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_pssunos.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_psutil_windows.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\_pswindows.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil-7.2.2.dist-info\INSTALLER
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil-7.2.2.dist-info\LICENSE
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil-7.2.2.dist-info\METADATA
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil-7.2.2.dist-info\RECORD
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil-7.2.2.dist-info\REQUESTED
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil-7.2.2.dist-info\top_level.txt
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\psutil-7.2.2.dist-info\WHEEL
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\avcodec-63.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\avformat-63.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\avutil-61.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\MSVCP140.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\MSVCP140_1.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\MSVCP140_2.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\opengl32sw.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\pyside6.abi3.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Core.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Gui.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Multimedia.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6MultimediaWidgets.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Network.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6OpenGL.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Pdf.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Qml.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6QmlMeta.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6QmlModels.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6QmlWorkerScript.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Quick.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Svg.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6VirtualKeyboard.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\Qt6Widgets.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\QtCore.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\QtGui.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\QtMultimedia.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\QtMultimediaWidgets.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\QtNetwork.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\QtWidgets.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\swresample-7.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\swscale-10.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\VCRUNTIME140.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\VCRUNTIME140_1.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\generic\qtuiotouchplugin.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\iconengines\qsvgicon.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qgif.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qicns.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qico.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qjpeg.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qpdf.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qsvg.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qtga.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qtiff.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qwbmp.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\imageformats\qwebp.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\multimedia\ffmpegmediaplugin.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\multimedia\windowsmediaplugin.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\networkinformation\qnetworklistmanager.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\platforminputcontexts\qtvirtualkeyboardplugin.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\platforms\qdirect2d.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\platforms\qminimal.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\platforms\qoffscreen.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\platforms\qwindows.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\styles\qmodernwindowsstyle.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\tls\qcertonlybackend.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\tls\qopensslbackend.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\plugins\tls\qschannelbackend.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_ar.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_bg.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_ca.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_cs.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_da.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_de.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_en.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_es.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_fa.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_fi.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_fr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_gd.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_he.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_hr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_hu.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_it.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_ja.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_ka.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_kk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_ko.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_lg.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_lv.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_nl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_nn.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_pl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_pt_BR.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_ru.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_sk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_sv.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_tr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_uk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_zh_CN.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtbase_zh_TW.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_ar.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_bg.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_ca.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_cs.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_da.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_de.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_en.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_es.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_fa.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_fi.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_fr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_hr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_hu.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_it.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_ja.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_ka.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_kk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_ko.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_nl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_nn.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_pl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_pt_BR.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_ru.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_sk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_sv.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_tr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_uk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_zh_CN.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qtmultimedia_zh_TW.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_ar.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_bg.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_ca.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_cs.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_da.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_de.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_en.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_es.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_fa.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_fi.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_fr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_gd.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_gl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_he.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_ar.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_bg.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_ca.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_cs.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_da.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_de.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_en.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_es.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_fr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_gl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_hr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_hu.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_it.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_ja.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_ka.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_kk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_ko.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_nl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_nn.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_pl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_pt_BR.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_ru.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_sk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_sl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_sv.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_tr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_uk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_zh_CN.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_help_zh_TW.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_hr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_hu.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_it.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_ja.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_ka.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_kk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_ko.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_lg.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_lt.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_lv.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_nl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_nn.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_pl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_pt_BR.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_pt_PT.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_ru.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_sk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_sl.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_sv.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_tr.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_uk.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_zh_CN.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\PySide6\translations\qt_zh_TW.qm
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\resources\avs.ico
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\resources\AVS_Move_Helper.exe
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\resources\catalog.json
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\resources\logo.png
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\resources\logo_small.png
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\resources\owner_key.json
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\requirements-base-cpu.txt
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\requirements-base-cuda.txt
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\runner.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\whisper_check.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\chatterbox_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\dia_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\f5_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\fishs2_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\gpu_choice.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\indextts_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\kokoro_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\language.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\onnx_inputs.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\openf5_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\piper_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\qwen_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\styletts2_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\timing.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\turbo_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\vits_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\voxcpm_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\warm_cache.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\xtts2_adapter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\runtime\adapters\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\shiboken6\MSVCP140.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\shiboken6\Shiboken.pyd
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\shiboken6\shiboken6.abi3.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\shiboken6\VCRUNTIME140.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\shiboken6\VCRUNTIME140_1.dll
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\audio_fx.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\autofix.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\autoresolve.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\backup.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\capabilities.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\channels.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\clones.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\core.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\design.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\downloads.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ed25519.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\elevate.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\emotions.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\environment_audit.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\external.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\favorites.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\generation_policy.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\guard.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\health.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\hf_import.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\importers.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\libtorch_sdk.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\limiter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\load_control.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\local_assets.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\log_filter.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\make_icon.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\managed.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\migration.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\modelfind.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\model_info.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\model_sources.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\move_engine.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\move_worker.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\network_trust.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\owner.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\package_cache.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\perf.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\permits.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\platform_info.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\preflight.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\preview.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\profile_gate.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ranged_transfer.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\recommend.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\recorder.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\reference_audio.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\reference_dialog.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\repository_metadata.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\resource_policy.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\robocopy_engine.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\samples.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\scripttools.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\services.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\setup_queue.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\shortcuts.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\shutdown.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\sources.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\source_update.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\speedup.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\theme.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\training.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui_cards.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui_channels.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui_extra.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui_updates.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui_v2.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui_v3.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\ui_v5.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\updater.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\update_local.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\voice_catalog.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\warm_worker.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\weight_cache.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\widgets.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\wordcheck.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\studio_src\__pycache__\__init__.cpython-311.pyc
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore\py.typed
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore\_api.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore\_macos.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore\_openssl.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore\_ssl_constants.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore\_windows.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore\__init__.py
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore-0.10.5.dist-info\INSTALLER
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore-0.10.5.dist-info\METADATA
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore-0.10.5.dist-info\RECORD
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore-0.10.5.dist-info\REQUESTED
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore-0.10.5.dist-info\WHEEL
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\_internal\truststore-0.10.5.dist-info\licenses\LICENSE
+   Compressing: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\installer\..\dist\AI_Voice_Studio\AI_Voice_Studio.exe
+   Compressing Setup program executable
+   Updating version info (Setup.exe)
+   Updating manifest (Setup.exe)
+
+
+Successful compile (61.422 sec). Resulting Setup program filename is:
+C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\BuildOut\AI_Voice_Studio_Setup_0.22.0.exe
+Offline update ZIP: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\BuildOut\AI_Voice_Studio_Update_0.22.0.zip
+Installer copy: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI Voice Studio by Unzip Spark Setup.exe
+SUCCESS - Installer: C:\Users\Unzip Studio\Downloads\AI_Voice_Studio_COMPLETE_0_22_0\AI_Voice_Studio_Project\BuildOut\AI_Voice_Studio_Setup_0.22.0.exe
+IMPORTANT: Real Windows installation, model download and WAV generation testing are still required before release.
+**********************
+Windows PowerShell transcript end
+End time: 20261125140442
+**********************

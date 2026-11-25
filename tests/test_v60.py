@@ -361,7 +361,7 @@ class V09(unittest.TestCase):
             s.assertTrue(w.type_buttons['tts'].isChecked());w.type_buttons['clone'].click();s.assertEqual(w.voice_type.currentData(),'clone');w.type_buttons['tts'].click()
             s.assertEqual(w.panel_stack.count(),2);w.show_panel(1);s.assertEqual(w.panel_stack.currentIndex(),1);w.show_panel(0)
             s.assertEqual(w.mode_badge.text(),'Owner');s.assertEqual([w.settings_tabs.tabText(i) for i in range(5)],['General','Performance','Backup','Updates','Tools'])
-            w.access.set_password('abcd');w.access.lock_for_users();w.apply_access();s.assertEqual(w.mode_badge.text(),'Member');s.assertEqual(w.settings_tabs.count(),5);s.assertFalse(w.settings_tabs.isTabVisible(2));s.assertTrue(w.settings_tabs.isTabVisible(3));w.access.enter_owner('abcd');w.apply_access();s.assertTrue(w.settings_tabs.isTabVisible(2))
+            w.access.open_to_all=False;w.access.set_password('abcd');w.access.lock_for_users();w.apply_access();s.assertEqual(w.mode_badge.text(),'Member');s.assertEqual(w.settings_tabs.count(),6);s.assertFalse(w.settings_tabs.isTabVisible(2));s.assertTrue(w.settings_tabs.isTabVisible(3));w.access.enter_owner('abcd');w.apply_access();s.assertTrue(w.settings_tabs.isTabVisible(2))
             w.script.setPlainText('Hello world. [pause 2s] Bye now.');app.processEvents();s.assertIn('1 pause',w.script_counts.text());s.assertIn('4 words',w.script_counts.text())
             w.insert_tag('[pause 1s]');s.assertIn('[pause 1s]',w.script.toPlainText())
             w.output_speed.setValue(1.4);w.volume_spin.setValue(130);w.reset_values();s.assertEqual((w.output_speed.value(),w.volume_spin.value()),(1.0,100))

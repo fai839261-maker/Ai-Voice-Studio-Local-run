@@ -1,4 +1,4 @@
-AI Voice Studio 0.21.0 - validation notes (honest)
+AI Voice Studio 0.22.0 - validation notes (honest)
 Checked in a Linux sandbox (offscreen window, stand-in audio player and start-up helper; no Windows, no GPU, no real voice models, no FFmpeg, no model sites):
 - all Python files compile; the real main window was built offscreen and the Clones page was rendered and looked at
 - sound-picture chooser: a 31 minute sound loads in about 2 s while the window stays responsive; zoom, move, wheel zoom around the mouse, minimum zoom,
@@ -56,3 +56,14 @@ typing in the editor never deletes a script, a hidden page cannot be opened by k
 NOT verified: a real voice-over made from the new Voice Overs tab (needs a downloaded voice model), Windows-only behaviour of the keyboard keys (the checks used simulated key presses), Open link in the real browser,
 the voice picker with real installed models (the sandbox has none, so it showed "No voice model is ready yet"), the installer build.
 The older tests in tests/ were written for 0.11.2: four checks in test_v60 fail the same way on the untouched 0.20.0 project (they were not changed).
+
+0.22.0 (online updates, automatic go-back, no owner login, Windows): sandbox only, offscreen window, no Windows, no real GitHub, no real voice models.
+Checked (tests/test_v22.py, 13 checks, plus test_v21.py 11 checks): only the newest 3 old versions are kept; a version that does not start twice in a row is put aside and the version before it comes back
+(then the original program if none is left); the built-in GitHub address is used with nothing saved; "newer / already latest / no file" answers; a download must match GitHub's published SHA-256 (a wrong file is refused);
+no owner login, no Owner badge, owner controls hidden, Sources and Logs gone from the side panel (page numbers unchanged), Logs is the last tab of Settings; update texts show the version only;
+voice samples are made only when asked and can no longer stay "in progress" forever; the close question names the work. All older test files give exactly the same results as on the untouched 0.20.0
+(their existing failures are unchanged); four old checks that tested the owner login and the saved-address rule were updated on purpose.
+NOT verified: a real download and install from GitHub, a real crash of a real new version, restart on Windows, the Inno Setup build, whether the three-day "voice sample" was a stuck flag or real work
+(both cases are handled: the flag always ends, and samples now start only on your request).
+Security note: updates taken from GitHub are not signed with the owner key (that needs a key this build does not hold). They are protected by HTTPS from GitHub's own hosts, GitHub's SHA-256 for the file and a
+syntax check of every file, and only the address built into the program is used. Whoever can publish a release in that repository can update every PC, so keep that GitHub account safe (two-step login).

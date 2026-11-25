@@ -18,7 +18,7 @@ PAGE_KEYS = (("Ctrl+1", 0, "Studio"), ("Ctrl+2", 6, "Library"), ("Ctrl+3", 7, "D
 
 HELP = (
     ("Go to a page", [(k, name) for k, _i, name in PAGE_KEYS]),
-    ("Everywhere", [("F1  or  Ctrl+/", "Show this list"), ("F5", "Refresh the page you are on"), ("Ctrl+Shift+O", "Owner login / lock")]),
+    ("Everywhere", [("F1  or  Ctrl+/", "Show this list"), ("F5", "Refresh the page you are on")]),
     ("Studio", [("Ctrl+Enter", "Generate voice over")]),
     ("Queue", [("Delete", "Remove the selected job from the list (audio stays)"), ("Enter", "Open the finished audio"), ("Ctrl+Enter", "Generate the selected job")]),
     ("Library", [("Ctrl+F", "Search voices")]),
@@ -66,7 +66,7 @@ class _Keys(QObject):
                 return bool(on_copy(w, focus))
         except Exception as exc:                  # a shortcut must never crash the window
             try:
-                w.toast(f"Shortcut problem: {exc}")
+                w.ch_say(f"Shortcut problem: {exc}")
             except Exception:
                 pass
             return True
@@ -150,7 +150,8 @@ def refresh(w):
         w.refresh_voice_library()
     elif page == 10:
         w.refresh_channels()
-    w.toast("Refreshed.")
+    if hasattr(w, "ch_say") and page == 10:
+        w.ch_say("Refreshed.")
 
 
 def new_item(w):

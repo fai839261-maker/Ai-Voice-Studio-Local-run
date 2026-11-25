@@ -15,4 +15,4 @@ V0.4.8 adds resumable, parallel folder migration. Never apply an update during a
 
 V0.4.9 adds automatic Robocopy acceleration with verified Python fallback.
 
-V0.21.0 removes the in-app update panel. Use the extracted UPDATE_MY_SOFTWARE.vbs launcher for subsequent upgrades. Earlier compatible in-app updaters can stage this ZIP.
+V0.22.0 removes the in-app update panel. Use the extracted UPDATE_MY_SOFTWARE.vbs launcher for subsequent upgrades. Earlier compatible in-app updaters can stage this ZIP.

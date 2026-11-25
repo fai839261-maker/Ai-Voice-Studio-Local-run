@@ -265,6 +265,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
 
     def __init__(self):
         self.access = Access()
+        self.access.open_to_all = True          # 0.22: everything is shown to everyone, no owner key needed
         self.gates = {}
         self.rows = {}
         self.engine_visible = {}
@@ -294,6 +295,10 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         self._update_busy = False
         super().__init__()
         self.stack.addWidget(self.build_check_page())      # page 11: Check words
+        self.move_logs_into_settings()
+        if not self.store.setting("samples_manual_022", False):      # voice samples only when you ask for them
+            self.store.set_setting("auto_samples", False)
+            self.store.set_setting("samples_manual_022", True)
         self.migrate_settings()
         self.preview_ready.connect(self.on_preview_ready)
         self.preview_failed.connect(self.on_preview_failed)
@@ -329,6 +334,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         self.script.textChanged.connect(self.update_counts)
         QShortcut(QKeySequence("Ctrl+Shift+O"), self, activated=self.toggle_owner_mode)
         shortcuts.install(self)
+        QTimer.singleShot(3000, self.show_rollback_notice)
         self.apply_theme()
         self.apply_access()
         self.refresh_favorites()
@@ -880,6 +886,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
             head.setVisible(not collapsed)
         self.version_label.setVisible(not collapsed)
         self.owner_button.setText(("🔓" if self.access.is_owner else "🔒") if collapsed else ("🔓  Lock for users" if self.access.is_owner else "🔒  Owner login"))
+        self.owner_button.setVisible(not getattr(self.access, "open_to_all", False))      # no owner login when everything is open (0.22)
 
     def toggle_theme(self, *_):
         new = "light" if self.store.setting("ui_theme", "dark") == "dark" else "dark"
@@ -2202,9 +2209,11 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
     def sample_busy(self) -> bool:
         return bool(self.running or self.preview_busy or self.busy_installer or self.move_pending or self.tasks or getattr(self, "pending_jobs", []))
 
-    def scan_samples(self):
+    def scan_samples(self, force=False):
         """Make a sample for every ready voice that has none. Runs quietly, one voice at a time, and steps aside when you generate."""
-        if self.sample_building or not self.store.setting("auto_samples", True) or self.store.setting("low_end_mode", False) or self.sample_busy():
+        if self.sample_building or self.sample_busy():
+            return
+        if not force and (not self.store.setting("auto_samples", False) or self.store.setting("low_end_mode", False)):
             return
         rows = favorites.all_voices(self.store, self.engine_ready)
         todo = [r for r in rows if r["ready"] and (r["model"], r["voice"]) not in self._sample_failed and not samples.has(samples.row_path(r))]
@@ -2212,21 +2221,44 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
             return
         self.sample_building = True
         device = self.preferred_device()
+        stop = self._sample_stop = threading.Event()
 
         def work():
             done = 0
-            for row in todo:
-                if self.sample_busy() or guard.reason(self.store):
-                    break
-                try:
-                    samples.build(self.store, row, device=device)
-                    done += 1
-                except Exception:
-                    self._sample_failed.add((row["model"], row["voice"]))
-                self.sample_progress.emit(done, len(todo))
-            self.sample_done.emit()
+            try:
+                for row in todo:
+                    if stop.is_set() or self.sample_busy() or guard.reason(self.store):
+                        break
+                    try:
+                        samples.build(self.store, row, device=device)
+                        done += 1
+                    except Exception:
+                        self._sample_failed.add((row["model"], row["voice"]))
+                    self.sample_progress.emit(done, len(todo))
+            finally:
+                self.sample_done.emit()          # always ends, so "a voice sample is being prepared" can never get stuck
 
         threading.Thread(target=work, daemon=True).start()
+
+    def samples_say(self, text):
+        if hasattr(self, "samples_note"):
+            self.samples_note.setText(text)
+
+    def prepare_samples_now(self):
+        if self.sample_building:
+            return self.samples_say("Voice samples are already being prepared.")
+        if self.sample_busy():
+            return self.samples_say("Finish the current work first, then press this again.")
+        self.samples_say("Preparing voice samples. You can stop it any time with Stop preparing.")
+        self.scan_samples(force=True)
+
+    def stop_samples(self):
+        event = getattr(self, "_sample_stop", None)
+        if event is not None and self.sample_building:
+            event.set()
+            self.samples_say("Stopping after the sample that is being made.")
+        else:
+            self.samples_say("No voice samples are being prepared.")
 
     def on_sample_progress(self, done, total):
         if hasattr(self, "lib_count") and self._lib_base:
@@ -2234,6 +2266,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
 
     def on_sample_done(self):
         self.sample_building = False
+        self.samples_say("Voice samples are finished or stopped.")
         if self.stack.currentIndex() == 6:
             self.refresh_voice_library()
 
@@ -2794,7 +2827,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
             combo.blockSignals(True)
             combo.setCurrentIndex(max(0, combo.findData(self.store.setting(key, default))))
             combo.blockSignals(False)
-        for box, key, default in ((self.preload_check, "preload_voice", True), (self.samples_check, "auto_samples", True), (self.warm_check, "keep_model_warm", True)):
+        for box, key, default in ((self.preload_check, "preload_voice", True), (self.samples_check, "auto_samples", False), (self.warm_check, "keep_model_warm", True)):
             box.blockSignals(True)
             box.setChecked(bool(self.store.setting(key, default)))
             box.blockSignals(False)
@@ -2985,10 +3018,13 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         self.preload_check.setChecked(bool(self.store.setting("preload_voice", True)))
         self.preload_check.toggled.connect(lambda on: self.store.set_setting("preload_voice", bool(on)))
         lay.addWidget(self.preload_check)
-        self.samples_check = QCheckBox("Prepare voice samples automatically")
-        self.samples_check.setChecked(bool(self.store.setting("auto_samples", True)))
+        self.samples_check = QCheckBox("Prepare voice samples automatically in the background (off unless you turn it on)")
+        self.samples_check.setChecked(bool(self.store.setting("auto_samples", False)))
         self.samples_check.toggled.connect(lambda on: self.store.set_setting("auto_samples", bool(on)))
         lay.addWidget(self.samples_check)
+        lay.addLayout(actions(button("Prepare voice samples now", self.prepare_samples_now), button("Stop preparing", self.stop_samples)))
+        self.samples_note = label("", "muted")
+        lay.addWidget(self.samples_note)
         lay.addWidget(label("Library voices play instantly after a model is installed.", "muted"))
         self.fast_check = QCheckBox("Faster generation: half precision (NVIDIA only, experimental)")
         self.fast_check.setToolTip("Can speed up and use less graphics memory on some cards. Turn it off if the voice sounds wrong.")
@@ -3489,9 +3525,36 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
 
     # ------------------------------------------------------------------------- Portable Pack
     # ------------------------------------------------------------------------- owner / user controls
+    def move_logs_into_settings(self):
+        """Logs are the last tab of Settings (not a side-panel page). The old page keeps its place in the stack, empty."""
+        if getattr(self, "_logs_moved", False) or not hasattr(self, "settings_tabs") or self.stack.count() < 6:
+            return
+        page = self.stack.widget(5)
+        self.stack.removeWidget(page)
+        self.stack.insertWidget(5, QWidget())
+        self.settings_tabs.addTab(page, "Logs")
+        self._logs_moved = True
+
+    def show_rollback_notice(self):
+        """After an automatic go-back, say what happened (once)."""
+        try:
+            import avs_boot
+            path = avs_boot.updates_dir() / "notice.txt"
+            if not path.is_file():
+                return
+            text = path.read_text(encoding="utf-8").strip()
+            path.unlink(missing_ok=True)
+        except Exception:
+            return
+        if text:
+            self.toast(text)
+            if not os.environ.get("AVS_NO_PROMPTS"):
+                QMessageBox.information(self, "Automatic repair", text)
+
     def apply_access(self):
         owner = self.access.is_owner
         self.mode_badge.setText("Owner" if owner else "Member")
+        self.mode_badge.setVisible(not getattr(self.access, "open_to_all", False))
         if hasattr(self, "settings_tabs"):
             backups = self.access.state("set.backup") == SHOW
             self.settings_tabs.setTabVisible(2, backups)
@@ -3502,6 +3565,9 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         for idx, key in PAGE_KEYS.items():
             state = self.access.state(key)
             button_ = self.nav_buttons[idx]
+            if idx in (5, 9) and getattr(self.access, "open_to_all", False):      # Logs live in Settings now; the Sources page is not offered
+                button_.setVisible(False)
+                continue
             button_.setVisible(state != HIDE)
             button_.setEnabled(state == SHOW)
             button_.setToolTip(LOCKED_TIP if state == LOCK else "")
@@ -3514,6 +3580,8 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         for key, widgets in self.visible_gates.items():
             for widget in widgets:
                 widget.setVisible(self.access.state(key) == SHOW)
+        if hasattr(self, "owner_card") and getattr(self.access, "open_to_all", False):
+            self.owner_card.setVisible(False)        # nobody manages access any more
         self.sync_studio_controls()
         self.sync_star()
         if hasattr(self, "access_status"):
@@ -3555,6 +3623,8 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         return True
 
     def toggle_owner_mode(self):
+        if getattr(self.access, "open_to_all", False):
+            return
         if self.access.key_mode:
             if self.access.is_owner:
                 if not self.confirm("Lock this copy", "Switch to User mode now?\n\nEnter your owner key (Owner login, bottom left) to come back to Owner mode."):
@@ -3663,7 +3733,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         if self.pack_busy:
             items.append("a backup is being made")
         if self.preloading or self.sample_building or self.preview_busy:
-            items.append("a voice sample is being prepared")
+            items.append("voice samples are being prepared (optional)")
         return ", ".join(items)
 
     def stop_everything_fast(self):
@@ -3683,6 +3753,9 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
                 self.pack_cancel.set()
         except Exception:
             pass
+        event = getattr(self, "_sample_stop", None)
+        if event is not None:
+            event.set()
         warm_worker.kill_now()
         try:
             import psutil
@@ -3696,6 +3769,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
 
     def closeEvent(self, event):
         busy = self.work_in_progress()
+        self._closing_started = True
         if busy and not os.environ.get("AVS_NO_PROMPTS") and not self.busy_installer:
             box = QMessageBox(self)
             box.setIcon(QMessageBox.Icon.Question)
@@ -3709,6 +3783,11 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
             if box.clickedButton() is not stop:
                 event.ignore()
                 return
+        try:
+            import avs_boot
+            avs_boot.mark_good()                 # a clean close proves this version started fine
+        except Exception:
+            pass
         from . import shutdown
         if busy and not self.busy_installer:
             self.stop_everything_fast()

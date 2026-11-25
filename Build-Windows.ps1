@@ -192,7 +192,7 @@ try {
     $checkPath = Join-Path $checkDir 'packaged-self-check.json'
     if ($script:NativeExit -ne 0 -or -not (Test-Path -LiteralPath $checkPath)) { throw 'Packaged self-check failed or did not produce a report.' }
     $check = Get-Content -LiteralPath $checkPath -Raw | ConvertFrom-Json
-    if ($check.result -ne 'PASS' -or @($check.missing).Count -ne 0 -or $check.version -ne '0.21.0') { throw 'Packaged resource test failed.' }
+    if ($check.result -ne 'PASS' -or @($check.missing).Count -ne 0 -or $check.version -ne '0.22.0') { throw 'Packaged resource test failed.' }
     $reportDir = Join-Path $PSScriptRoot 'BuildOut'
     New-Item -ItemType Directory -Path $reportDir -Force | Out-Null
     Copy-Item -LiteralPath $checkPath -Destination (Join-Path $reportDir 'packaged-self-check.json') -Force
@@ -233,14 +233,14 @@ if (-not $iscc) {
     if (-not $iscc) { throw 'Inno Setup compiler not found after WinGet. Install Inno Setup 6.3 or newer and rerun.' }
 }
 Write-Host "Compiling with: $iscc"
-$final = Join-Path $PSScriptRoot 'BuildOut\AI_Voice_Studio_Setup_0.21.0.exe'
+$final = Join-Path $PSScriptRoot 'BuildOut\AI_Voice_Studio_Setup_0.22.0.exe'
 # Do not mistake a previous installer for the result of this build.
 if (Test-Path -LiteralPath $final) { Remove-Item -LiteralPath $final -Force }
 Invoke-HiddenNative $iscc @('installer\AI_Voice_Studio.iss')
 if ($script:NativeExit -ne 0) { throw 'Inno Setup compilation failed.' }
 if (-not (Test-Path -LiteralPath $final -PathType Leaf)) { throw 'Final installer did not appear.' }
 (Get-FileHash -LiteralPath $final -Algorithm SHA256).Hash | Set-Content -LiteralPath ($final + '.sha256.txt') -Encoding ASCII
-$updateZip = Join-Path $PSScriptRoot 'BuildOut\AI_Voice_Studio_Update_0.21.0.zip'
+$updateZip = Join-Path $PSScriptRoot 'BuildOut\AI_Voice_Studio_Update_0.22.0.zip'
 Compress-Archive -LiteralPath @($final, ($final + '.sha256.txt')) -DestinationPath $updateZip -Force
 Write-Host "Offline update ZIP: $updateZip"
 # A clearly named copy of the installer sits OUTSIDE the project folder, next to it.

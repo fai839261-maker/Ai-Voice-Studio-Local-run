@@ -31,6 +31,7 @@ MAX_FILES, MAX_BYTES = 5000, 300 * 1024 * 1024
 REPO = r"[A-Za-z0-9][A-Za-z0-9_.-]{0,95}/[A-Za-z0-9][A-Za-z0-9_.-]{0,95}"
 HOSTS = {"github.com", "api.github.com", "objects.githubusercontent.com", "release-assets.githubusercontent.com",
          "github-releases.githubusercontent.com"}
+DEFAULT_REPO = "fai839261-maker/Ai-Voice-Studio-Local-run"      # where every copy looks for updates (0.22)
 ASSET = re.compile(r"AVS_Update_(\d+(?:\.\d+){1,3})\.zip", re.IGNORECASE)
 PROJECT_ASSET = re.compile(r"AI_Voice_Studio_(?:COMPLETE|UPDATE)_(\d+(?:_\d+){1,3})[^/\\]*\.zip", re.IGNORECASE)
 
@@ -434,16 +435,20 @@ def latest_release(repo: str, fetch=None) -> dict | None:
             version = alt.group(1).replace("_", ".") if alt else None
         if version and (best is None or is_newer(version, best["version"])):
             best = {"version": version, "name": asset["name"], "url": asset.get("browser_download_url", ""),
+                    "sha256": str(asset.get("digest") or "").lower().removeprefix("sha256:") if str(asset.get("digest") or "").lower().startswith("sha256:") else "",
                     "size": int(asset.get("size") or 0), "tag": data.get("tag_name", ""), "notes": str(data.get("body") or "")[:2000],
                     "page": data.get("html_url", "")}
     return best
 
 
+def update_repo() -> str:
+    """The GitHub address updates come from. Fixed in the program; AVS_UPDATE_REPO only exists for tests."""
+    return os.environ.get("AVS_UPDATE_REPO") or DEFAULT_REPO
+
+
 def check_online(store, fetch=None) -> dict:
     """{'status': 'no_repo'|'none'|'current'|'newer', 'release': {...}}  (raises on network trouble)."""
-    repo = str(store.setting("update_repo", "") or "")
-    if not repo:
-        return {"status": "no_repo"}
+    repo = update_repo()
     release = latest_release(repo, fetch)
     store.set_setting("update_last_check", time.time())
     if not release:
@@ -456,7 +461,7 @@ def check_online(store, fetch=None) -> dict:
 
 
 def auto_check_due(store, now: float | None = None, interval_hours: float = 24) -> bool:
-    if not store.setting("update_auto_check", True) or not store.setting("update_repo", ""):
+    if not store.setting("update_auto_check", True):
         return False
     return (now or time.time()) - float(store.setting("update_last_check", 0) or 0) >= interval_hours * 3600
 
@@ -479,6 +484,7 @@ def download_release(release: dict, dest_folder: Path, progress=None, cancel=Non
                 raise UpdateError("GitHub sent the download to another website, so it was stopped.")
             total = int(response.headers.get("Content-Length") or release.get("size") or 0)
             got = 0
+            digest = hashlib.sha256()
             with partial.open("wb") as out:
                 while True:
                     if cancel is not None and cancel.is_set():
@@ -490,10 +496,14 @@ def download_release(release: dict, dest_folder: Path, progress=None, cancel=Non
                     if got > MAX_BYTES:
                         raise UpdateError("The update file is unexpectedly large.")
                     out.write(chunk)
+                    digest.update(chunk)
                     if progress and total:
                         progress(min(1.0, got / total))
         if total and got != total:
             raise UpdateError("The download was cut short. Try again.")
+        expected = str(release.get("sha256") or "")
+        if expected and digest.hexdigest() != expected:
+            raise UpdateError("The downloaded file does not match the one GitHub published, so it was not installed. Try again.")
         os.replace(partial, final)
         return final
     finally:

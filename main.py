@@ -151,7 +151,7 @@ def run_gui():
     w.show()
     from PySide6.QtCore import QTimer
     import avs_boot
-    QTimer.singleShot(4000,avs_boot.mark_good)   # the window opened: an update layer, if any, works
+    QTimer.singleShot(120000,avs_boot.mark_good)   # still running after two minutes: the update layer, if any, works (a clean close counts too)
     return app.exec()
 
 if __name__=='__main__':

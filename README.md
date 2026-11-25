@@ -1,12 +1,21 @@
-# AI Voice Studio 0.21.0 (COMPLETE project for Windows AND Mac, includes everything from 0.12.0 to 0.21.0)
+# AI Voice Studio 0.22.0 (COMPLETE project for Windows AND Mac, includes everything from 0.12.0 to 0.22.0)
 
 ## Get the Setup file (step by step)
 1. Unzip this ZIP. Open the folder.
-2. Double-click BUILD_INSTALLER.bat (as before). When it finishes, BuildOut\AI_Voice_Studio_Setup_0.21.0.exe is your installer.
+2. Double-click BUILD_INSTALLER.bat (as before). When it finishes, BuildOut\AI_Voice_Studio_Setup_0.22.0.exe is your installer.
 3. Run the Setup file. Your voices, models and settings are kept.
 
 ## Or update the installed software without a new Setup
 Settings > Updates > Install update file > ZIP file > choose this ZIP. The window stays alive while it is checked, then the software restarts by itself.
+
+## New in 0.22.0: online updates for everyone, safer updates (Windows)
+- **Settings > Updates > Check for updates** looks at github.com/fai839261-maker/Ai-Voice-Studio-Local-run (built in, nothing to type). It says "Update available: version X" or "Already latest update installed." Anyone can use it, no owner key.
+- **Installing an update** stops everything that is running (finished parts are kept), installs and restarts by itself. Nothing is installed until you press the button.
+- **Automatic repair.** If a new version does not start properly twice in a row (or does not stay up for two minutes), the software goes back to the version before it by itself and tells you. The newest 3 older versions are kept on the PC; older ones are removed.
+- **No owner login.** Everything is shown to everyone. The Owner login button, the Owner badge and the owner controls are gone.
+- **Side panel:** Sources is gone. Logs moved to the last tab of Settings.
+- **Voice samples** are made only when you ask (Settings > Performance > Prepare voice samples now). Closing the software while something is running asks you: stop and close, or keep working. A stuck "voice sample is being prepared" message can no longer happen.
+- A downloaded update is checked against the SHA-256 that GitHub publishes for the file.
 
 ## New in 0.21.0: Channels rebuilt (Windows)
 - **Channel logo.** Choose a picture when you create a channel, or later with Change logo / Remove logo. It shows on the channel card and in the Active channel list.
