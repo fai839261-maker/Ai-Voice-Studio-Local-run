@@ -36,6 +36,9 @@ def find_python() -> str | None:
         if path and "WindowsApps" not in path:
             candidates.append([path])
     if os.name == "nt":
+        own = TARGET.parent / "Python311" / "python.exe"        # the copy this software installs for itself
+        if own.is_file():
+            candidates.append([str(own)])
         for base in [Path.home()/"AppData"/"Local"/"Programs"/"Python", Path("C:/Python311"), Path("C:/Python312")]:
             if base.is_dir():
                 for f in (base.glob("Python3*/python.exe") if "Programs" in str(base) else [base/"python.exe"]):
@@ -162,11 +165,17 @@ def install_python(log=lambda msg:None):
         return
     if os.name != "nt":
         raise RuntimeError("Automated Python bootstrap is available only on Windows.")
-    exe = shutil.which("winget")
-    if not exe:
-        raise RuntimeError("WinGet not found. Install App Installer from Microsoft, then retry. No unverified installer will be run.")
-    run_command([exe,"install","--id","Python.Python.3.11","-e","--source","winget",
-                 "--accept-package-agreements","--accept-source-agreements"],log,timeout=1800)
+    from . import managed
+    try:
+        managed.install_python_windows(log)                      # python.org installer, signature checked, no WinGet needed
+        managed.ensure_pip(str(managed.own_python_dir() / "python.exe"), log)
+    except Exception as exc:
+        log("Direct Python install did not work: " + str(exc)[:300])
+        exe = shutil.which("winget")
+        if not exe:
+            raise RuntimeError("Python could not be installed automatically. " + managed.PYTHON_WIN_HELP)
+        run_command([exe,"install","--id","Python.Python.3.11","-e","--source","winget",
+                     "--accept-package-agreements","--accept-source-agreements"],log,timeout=1800)
     if not find_python():
         raise RuntimeError("Python installer exited, but the new runtime could not yet be detected. Restart the app and scan again.")
 

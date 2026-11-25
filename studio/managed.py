@@ -1,6 +1,6 @@
 """Managed per-family environments and cancellable, revision-pinned downloads."""
 from __future__ import annotations
-import hashlib,json,os,re,shutil,subprocess,threading,time,urllib.request,urllib.parse,tempfile
+import hashlib,json,os,re,shutil,subprocess,sys,threading,time,urllib.request,urllib.parse,tempfile
 from pathlib import Path
 from .core import models,subdir,sha256,is_audio
 from . import external, downloads
@@ -93,6 +93,9 @@ def probe(path):
         x=Path(r.stdout.strip()); return x if r.returncode==0 and x.is_file() else None
     except (OSError,subprocess.SubprocessError): return None
 
+def own_python_dir():
+    return subdir('py')/'Python311'
+
 def runtime_python():
     candidates=[]
     saved=subdir('py')/'runtime.json'
@@ -100,6 +103,7 @@ def runtime_python():
         try: candidates.append(json.loads(saved.read_text())['python'])
         except (ValueError,KeyError): pass
     if os.name=='nt':
+        candidates.append(str(own_python_dir()/'python.exe'))     # the copy this software installs for itself
         import winreg
         for hive in (winreg.HKEY_CURRENT_USER,winreg.HKEY_LOCAL_MACHINE):
             for view in (winreg.KEY_WOW64_64KEY,winreg.KEY_WOW64_32KEY):
@@ -175,6 +179,84 @@ def install_python_mac(log,cancel=None):
     r=subprocess.run(['/usr/bin/osascript','-e',script],capture_output=True,text=True,timeout=1800)
     if r.returncode:raise RuntimeError('Python was not installed ('+(r.stderr or r.stdout).strip()[:200]+').\n\n'+MAC_PYTHON_HELP)
 
+PYTHON_WIN_URL='https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe'
+VCREDIST_URL='https://aka.ms/vs/17/release/vc_redist.x64.exe'
+PYTHON_WIN_HELP=('Python 3.11 could not be installed automatically. Open https://www.python.org/downloads/release/python-3119/ , download "Windows installer (64-bit)", '
+                 'run it, tick "Add python.exe to PATH", press Install Now, and then press the button here again.')
+
+def download_file(url,dest,log,cancel=None,name='file'):
+    """Download over HTTPS to dest (progress in the log, cancellable). A half-finished file is never left behind."""
+    dest=Path(dest);dest.parent.mkdir(parents=True,exist_ok=True);part=dest.with_name(dest.name+'.part')
+    try:
+        with downloads.open_secure(downloads.request(url),timeout=60) as r:
+            total=int(r.headers.get('Content-Length') or 0);got=0;last=-1
+            with part.open('wb') as out:
+                while True:
+                    check_cancel(cancel)
+                    chunk=r.read(1<<18)
+                    if not chunk:break
+                    out.write(chunk);got+=len(chunk)
+                    if total and int(got*100/total)//10*10!=last:
+                        last=int(got*100/total)//10*10;log(f'Downloading {name}... {last}%')
+        if total and got!=total:raise RuntimeError('The download was cut short. Check the internet connection and try again.')
+        os.replace(part,dest)
+    finally:part.unlink(missing_ok=True)
+    return dest
+
+def signature_ok(path,publisher):
+    """Windows: the file must carry a valid digital signature from this publisher. Anything else is never run."""
+    if os.name!='nt':return False
+    ps=shutil.which('powershell') or str(Path(os.environ.get('WINDIR','C:/Windows'))/'System32/WindowsPowerShell/v1.0/powershell.exe')
+    script="$s=Get-AuthenticodeSignature -LiteralPath '%s'; Write-Output ($s.Status.ToString()+'|'+$s.SignerCertificate.Subject)"%str(path).replace("'","''")
+    try:r=subprocess.run([ps,'-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-Command',script],capture_output=True,text=True,timeout=120,creationflags=FLAGS)
+    except (OSError,subprocess.SubprocessError):return False
+    status,_,subject=(r.stdout or '').strip().partition('|')
+    return r.returncode==0 and status.strip()=='Valid' and publisher.lower() in subject.lower()
+
+def install_python_windows(log,cancel=None):
+    """Python 3.11 straight from python.org (no WinGet needed): checked for the Python Software Foundation signature, installed only for this
+    software in its own folder (no administrator password), with pip."""
+    target=own_python_dir()
+    found=probe(target/'python.exe')
+    if found:return found
+    dest=subdir('py')/'python-3.11.9-amd64.exe'
+    log('Downloading the official Python 3.11 installer from python.org (about 25 MB)')
+    download_file(PYTHON_WIN_URL,dest,log,cancel,'Python')
+    check_cancel(cancel)
+    if not signature_ok(dest,'Python Software Foundation'):
+        dest.unlink(missing_ok=True)
+        raise RuntimeError('The downloaded Python installer does not have a valid Python Software Foundation signature, so it was not run.')
+    log('Installer signature checked. Installing Python for this software (a few minutes)')
+    args=[str(dest),'/quiet','InstallAllUsers=0','TargetDir='+str(target),'PrependPath=0','Include_launcher=0','InstallLauncherAllUsers=0','Include_pip=1',
+          'Include_test=0','Include_doc=0','Include_tcltk=0','Shortcuts=0','AssociateFiles=0','/log',str(subdir('py')/'python-install.log')]
+    run(args,log,cancel)
+    found=probe(target/'python.exe')
+    if not found:raise RuntimeError('Python was installed but could not be started. Details: '+str(subdir('py')/'python-install.log'))
+    dest.unlink(missing_ok=True)
+    return found
+
+def ensure_pip(py,log,cancel=None):
+    """pip must exist and be current; a missing pip is added, an old one is updated (an update that fails is not an error)."""
+    ok,_=probe_import(py,'import pip',60)
+    if not ok:
+        log('Adding pip')
+        run([py,'-u','-m','ensurepip','--upgrade','--default-pip'],log,cancel,env(False))
+    try:run([py,'-u','-m','pip','install','--upgrade','pip','--disable-pip-version-check','--no-warn-script-location'],log,cancel,env(False))
+    except RuntimeError as exc:log('pip could not be updated; the installed pip is used: '+str(exc)[-200:])
+
+def install_vcredist_direct(log,cancel=None):
+    """The Microsoft Visual C++ runtime straight from Microsoft when WinGet is missing. Windows asks for permission once."""
+    dest=subdir('cache')/'vc_redist.x64.exe'
+    download_file(VCREDIST_URL,dest,log,cancel,'the Microsoft Visual C++ runtime')
+    if not signature_ok(dest,'Microsoft Corporation'):
+        dest.unlink(missing_ok=True)
+        raise RuntimeError('The downloaded file is not signed by Microsoft, so it was not run.')
+    log('Windows will ask for permission to install the Microsoft Visual C++ runtime. Press Yes.')
+    ps=shutil.which('powershell') or str(Path(os.environ.get('WINDIR','C:/Windows'))/'System32/WindowsPowerShell/v1.0/powershell.exe')
+    script="$p=Start-Process -FilePath '%s' -ArgumentList '/install','/quiet','/norestart' -Verb RunAs -Wait -PassThru; exit $p.ExitCode"%str(dest).replace("'","''")
+    r=subprocess.run([ps,'-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-Command',script],capture_output=True,text=True,timeout=1800,creationflags=FLAGS)
+    if r.returncode not in (0,1638,3010):raise RuntimeError('The Visual C++ runtime was not installed (code %s). Was the permission window answered with Yes?'%r.returncode)
+
 def ensure_runtime(log,cancel=None):
     p=runtime_python()
     if not p:
@@ -185,13 +267,23 @@ def ensure_runtime(log,cancel=None):
             (subdir('py')/'runtime.json').write_text(json.dumps({'python':str(p)}))
             return p
         if os.name!='nt':raise RuntimeError('Python 3.11 x64 required.')
-        winget=shutil.which('winget')
-        if not winget:raise RuntimeError('WinGet is missing. Install Microsoft App Installer, then retry.')
-        try:run([winget,'install','--id','Python.Python.3.11','--exact','--source','winget','--scope','user','--silent','--accept-package-agreements','--accept-source-agreements','--disable-interactivity'],log,cancel)
-        except RuntimeError:
-            if not runtime_python():raise
+        problems=[]
+        try:install_python_windows(log,cancel)            # first choice: python.org, needs no WinGet
+        except Cancelled:raise
+        except Exception as exc:
+            problems.append(str(exc)[:300]);log('Direct Python install did not work: '+str(exc)[:300])
         p=runtime_python()
-        if not p:raise RuntimeError('Python installation finished but Python 3.11 could not be executed. Restart Windows or repair Python.')
+        if not p:
+            winget=shutil.which('winget')
+            if winget:
+                log('Trying WinGet instead')
+                try:run([winget,'install','--id','Python.Python.3.11','--exact','--source','winget','--scope','user','--silent','--accept-package-agreements','--accept-source-agreements','--disable-interactivity'],log,cancel)
+                except RuntimeError as exc:problems.append(str(exc)[-200:])
+                p=runtime_python()
+        if not p:raise RuntimeError('Python 3.11 could not be installed automatically.'+('\n\n'+problems[0] if problems else '')+'\n\n'+PYTHON_WIN_HELP)
+        ensure_pip(p,log,cancel)
+    elif not (subdir('py')/'runtime.json').exists() and os.name=='nt':
+        ensure_pip(p,log,cancel)                              # first run on this PC: make sure pip is there and current
     (subdir('py')/'runtime.json').write_text(json.dumps({'python':str(p)}))
     return p
 
@@ -401,13 +493,17 @@ def repair_native_runtime(detail,log,cancel):
             if winreg.QueryValueEx(k,'Installed')[0]==1:return False
     except OSError:pass
     winget=shutil.which('winget')
-    if not winget:
-        log('Possible missing Microsoft Visual C++ redistributable (x64). WinGet is unavailable.');return False
     log('Installing missing Microsoft Visual C++ x64 redistributable')
+    if winget:
+        try:
+            run([winget,'install','--id','Microsoft.VCRedist.2015+.x64','--exact','--source','winget','--silent','--accept-package-agreements','--accept-source-agreements','--disable-interactivity'],log,cancel)
+            return True
+        except RuntimeError as e:
+            log('WinGet could not install the Visual C++ runtime: '+str(e)[-200:])
     try:
-        run([winget,'install','--id','Microsoft.VCRedist.2015+.x64','--exact','--source','winget','--silent','--accept-package-agreements','--accept-source-agreements','--disable-interactivity'],log,cancel)
-        return True
-    except RuntimeError as e:
+        install_vcredist_direct(log,cancel);return True
+    except Cancelled:raise
+    except Exception as e:
         log('Visual C++ runtime repair failed: '+str(e));return False
 
 

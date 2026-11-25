@@ -1,4 +1,4 @@
-AI Voice Studio 0.22.0 - validation notes (honest)
+AI Voice Studio 0.23.0 - validation notes (honest)
 Checked in a Linux sandbox (offscreen window, stand-in audio player and start-up helper; no Windows, no GPU, no real voice models, no FFmpeg, no model sites):
 - all Python files compile; the real main window was built offscreen and the Clones page was rendered and looked at
 - sound-picture chooser: a 31 minute sound loads in about 2 s while the window stays responsive; zoom, move, wheel zoom around the mouse, minimum zoom,
@@ -67,3 +67,10 @@ NOT verified: a real download and install from GitHub, a real crash of a real ne
 (both cases are handled: the flag always ends, and samples now start only on your request).
 Security note: updates taken from GitHub are not signed with the owner key (that needs a key this build does not hold). They are protected by HTTPS from GitHub's own hosts, GitHub's SHA-256 for the file and a
 syntax check of every file, and only the address built into the program is used. Whoever can publish a release in that repository can update every PC, so keep that GitHub account safe (two-step login).
+
+0.23.0 (Python/pip on a fresh PC, GitHub fallback, Windows): sandbox only, Linux, no Windows, no real python.org download, no real install.
+Checked (tests/test_v23.py): the missing "sys" import is fixed and a full undefined-name scan of the program is clean; the installer command line for Python (silent, per-user, own folder, pip included) is built as intended;
+a download without a valid signature is refused and deleted; pip is added only when missing and then updated; the ask-first question runs the Python install; a failing GitHub API (403) falls back to the web pages and the
+asset list and SHA-256 are read correctly (also checked once against the real release page of the repository, read-only).
+NOT verified: the real Python installer on Windows (silent options come from Python's documented installer switches), the PowerShell signature check on Windows, the Visual C++ download and permission window,
+the ask-first popup on a PC that really has no Python, Git and the C++ build tools without WinGet (unchanged: they still need WinGet).

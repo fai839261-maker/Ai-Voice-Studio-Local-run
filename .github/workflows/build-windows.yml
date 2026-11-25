@@ -33,7 +33,7 @@ jobs:
         with:
           name: AI-Voice-Studio-Windows-Setup
           path: |
-            BuildOut/AI_Voice_Studio_Setup_0.22.0.exe
-            BuildOut/AI_Voice_Studio_Setup_0.22.0.exe.sha256.txt
-            BuildOut/AI_Voice_Studio_Update_0.22.0.zip
+            BuildOut/AI_Voice_Studio_Setup_0.23.0.exe
+            BuildOut/AI_Voice_Studio_Setup_0.23.0.exe.sha256.txt
+            BuildOut/AI_Voice_Studio_Update_0.23.0.zip
           if-no-files-found: error

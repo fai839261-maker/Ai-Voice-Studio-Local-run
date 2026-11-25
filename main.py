@@ -1,4 +1,5 @@
 """Desktop entrypoint and packaged-resource self-check."""
+import os
 import sys
 
 

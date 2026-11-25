@@ -17,7 +17,7 @@ import uuid
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import quote, unquote, urlsplit
 
 import avs_boot
 from . import ed25519
@@ -419,12 +419,51 @@ def clean_repo(value: str) -> str:
     return v
 
 
+def _release_from_page(repo: str, first_error: Exception | None = None) -> dict:
+    """GitHub limits how often a program may ask its API (error 403, rate limit). The normal web pages have no such limit, so read the release from them."""
+    from . import downloads
+
+    def page(url: str):
+        with downloads.open_secure(downloads.request(url, {"Accept": "text/html"}), timeout=30) as response:
+            if urlsplit(response.geturl()).hostname not in HOSTS:
+                raise UpdateError("GitHub sent the request to another website, so it was stopped.")
+            return response.geturl(), response.read(3_000_000).decode("utf-8", "replace")
+    try:
+        final, _ = page(f"https://github.com/{repo}/releases/latest")
+        match = re.search(r"/releases/tag/([^/?#]+)", final)
+        if not match:
+            return {"assets": []}
+        tag = unquote(match.group(1))
+        _, body = page(f"https://github.com/{repo}/releases/expanded_assets/{quote(tag)}")
+    except UpdateError:
+        raise
+    except Exception as exc:
+        raise (first_error or exc)
+    links = list(re.finditer(r'href="(/' + re.escape(repo) + r'/releases/download/[^"]+)"', body, re.IGNORECASE))
+    assets, seen = [], set()
+    for i, link in enumerate(links):
+        name = unquote(link.group(1).rsplit("/", 1)[-1])
+        if name in seen:
+            continue
+        seen.add(name)
+        end = links[i + 1].start() if i + 1 < len(links) else len(body)
+        digest = re.search(r"sha256:([0-9a-fA-F]{64})", body[link.end():end])
+        assets.append({"name": name, "browser_download_url": "https://github.com" + link.group(1), "size": 0,
+                       "digest": ("sha256:" + digest.group(1)) if digest else ""})
+    return {"tag_name": tag, "html_url": f"https://github.com/{repo}/releases/tag/{quote(tag)}", "body": "", "assets": assets}
+
+
 def latest_release(repo: str, fetch=None) -> dict | None:
     """The newest GitHub release that carries an AVS_Update_<version>.zip file, or None."""
     repo = clean_repo(repo)
     if fetch is None:
-        from .downloads import fetch_json as fetch
-    data = fetch(f"https://api.github.com/repos/{repo}/releases/latest")
+        from .downloads import fetch_json
+        try:
+            data = fetch_json(f"https://api.github.com/repos/{repo}/releases/latest")
+        except Exception as exc:                      # most often: HTTP 403 rate limit
+            data = _release_from_page(repo, exc)
+    else:
+        data = fetch(f"https://api.github.com/repos/{repo}/releases/latest")
     best = None
     for asset in data.get("assets", []) or []:
         name = str(asset.get("name", ""))

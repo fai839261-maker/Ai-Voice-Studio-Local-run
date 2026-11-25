@@ -529,7 +529,11 @@ class UpdatePages:
         elif status == "no_repo":
             self.upd_status.setText("No update address is set.")
         else:
-            self.upd_status.setText("Could not check: " + result.get("message", "unknown problem") + ". Check the internet connection and the GitHub address.")
+            message = result.get("message", "unknown problem")
+            if "403" in message or "rate limit" in message.lower():
+                self.upd_status.setText("GitHub is limiting requests from this internet connection right now. Wait a few minutes and press Check for updates again.")
+            else:
+                self.upd_status.setText("Could not check: " + message + ". Check the internet connection.")
             self.upd_log_add("Check failed: " + result.get("message", ""))
 
     def download_and_install(self):

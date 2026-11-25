@@ -1,12 +1,20 @@
-# AI Voice Studio 0.22.0 (COMPLETE project for Windows AND Mac, includes everything from 0.12.0 to 0.22.0)
+# AI Voice Studio 0.23.0 (COMPLETE project for Windows AND Mac, includes everything from 0.12.0 to 0.23.0)
 
 ## Get the Setup file (step by step)
 1. Unzip this ZIP. Open the folder.
-2. Double-click BUILD_INSTALLER.bat (as before). When it finishes, BuildOut\AI_Voice_Studio_Setup_0.22.0.exe is your installer.
+2. Double-click BUILD_INSTALLER.bat (as before). When it finishes, BuildOut\AI_Voice_Studio_Setup_0.23.0.exe is your installer.
 3. Run the Setup file. Your voices, models and settings are kept.
 
 ## Or update the installed software without a new Setup
 Settings > Updates > Install update file > ZIP file > choose this ZIP. The window stays alive while it is checked, then the software restarts by itself.
+
+## New in 0.23.0: Python and pip on a fresh Windows PC, GitHub limit fixed (Windows)
+- **Fixed the crash "name 'sys' is not defined"** when preparing Python (and two more missing-import mistakes found by a full scan: one in main.py, one in the clone sample window).
+- **Python without WinGet.** If Python 3.11 is missing, the software asks first ("Python is needed - install it now?"), then downloads the official installer from python.org, checks its Python Software Foundation signature, and installs it
+  only for this software (no administrator password) in its own folder, with pip, which is then updated. WinGet is only a second choice. The question appears a few seconds after start when Python is missing, and when you press a model's setup button.
+- **Visual C++ runtime** (needed by some voice engines) is also downloaded straight from Microsoft, signature checked, when WinGet is missing. Windows asks for permission once.
+- **Check for updates no longer fails with "HTTP Error 403: rate limit exceeded".** If GitHub's program interface refuses, the release is read from GitHub's normal web pages (no limit), with the same checks.
+- Still needing WinGet (or a manual install): Git and the Microsoft C++ build tools, which only a few engines use. English voices work without them.
 
 ## New in 0.22.0: online updates for everyone, safer updates (Windows)
 - **Settings > Updates > Check for updates** looks at github.com/fai839261-maker/Ai-Voice-Studio-Local-run (built in, nothing to type). It says "Update available: version X" or "Already latest update installed." Anyone can use it, no owner key.

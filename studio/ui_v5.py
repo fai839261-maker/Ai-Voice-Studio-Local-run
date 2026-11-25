@@ -24,7 +24,7 @@ from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 from PySide6.QtWidgets import (
     QAbstractItemView, QApplication, QCheckBox, QComboBox, QDialog, QDialogButtonBox, QDoubleSpinBox, QFileDialog, QFormLayout, QFrame,
     QHBoxLayout, QHeaderView, QInputDialog, QLabel, QLineEdit, QMessageBox, QProgressBar, QPushButton, QScrollArea,
-    QMenu, QSizePolicy, QSlider, QSpinBox, QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QMenu, QPlainTextEdit, QSizePolicy, QSlider, QSpinBox, QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 from .ui_v3 import StudioWindow as V3, SeekSlider
 from .ui import label, button, layout_row
@@ -235,6 +235,7 @@ class MiniPlayer(QWidget):
 # ----------------------------------------------------------------------------- the window
 class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
     preview_ready = Signal(str, str)      # wav path, target ('studio' / 'library')
+    python_checked = Signal(bool)          # is Python 3.11 on this PC?
     preview_failed = Signal(str, str)     # message, target
     pack_progress = Signal(float, str)
     pack_done = Signal(str)
@@ -335,6 +336,9 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         QShortcut(QKeySequence("Ctrl+Shift+O"), self, activated=self.toggle_owner_mode)
         shortcuts.install(self)
         QTimer.singleShot(3000, self.show_rollback_notice)
+        self.python_checked.connect(self.on_python_checked)
+        if os.name == "nt" and not os.environ.get("AVS_NO_PROMPTS"):
+            QTimer.singleShot(9000, self.python_startup_check)
         self.apply_theme()
         self.apply_access()
         self.refresh_favorites()
@@ -3534,6 +3538,47 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         self.stack.insertWidget(5, QWidget())
         self.settings_tabs.addTab(page, "Logs")
         self._logs_moved = True
+
+    # ---- Python on a fresh Windows PC: ask first, then install it from python.org (no WinGet needed)
+    def python_startup_check(self):
+        def work():
+            try:
+                found = bool(managed.runtime_python())
+            except Exception:
+                found = False
+            self.python_checked.emit(found)
+        threading.Thread(target=work, daemon=True).start()
+
+    def on_python_checked(self, found):
+        if found:
+            self._python_ok = True
+        else:
+            self.ask_install_python()
+
+    def python_ready(self, ask=True):
+        """True when Python 3.11 can be used. If not (Windows), offer to install it and answer False for now."""
+        if os.name != "nt" or getattr(self, "_python_ok", False):
+            return True
+        if managed.runtime_python():
+            self._python_ok = True
+            return True
+        if ask:
+            self.ask_install_python()
+        return False
+
+    def ask_install_python(self):
+        if os.environ.get("AVS_NO_PROMPTS") or "runtime" in self.tasks or self.busy_installer or self.running:
+            return
+        if self.confirm("Python is needed",
+                        "The voice engines need Python 3.11, and it is not on this PC yet.\n\nInstall it now? It is downloaded from python.org (about 25 MB), "
+                        "installed only for this software in its own folder (no administrator password), and pip is installed with it.\n\n"
+                        "You can keep using the software while it installs. When it is finished, press the setup button again."):
+            self.start_task("runtime", None, lambda c, p, l: managed.ensure_runtime_serial(l, c), "Preparing Python")
+
+    def install_card(self, key):
+        if not self.python_ready():
+            return
+        return super().install_card(key)
 
     def show_rollback_notice(self):
         """After an automatic go-back, say what happened (once)."""
