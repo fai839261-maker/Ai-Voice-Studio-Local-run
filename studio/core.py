@@ -14,7 +14,7 @@ import uuid
 import wave
 from pathlib import Path
 
-APP_VERSION = "0.23.0"
+APP_VERSION = "0.23.1"
 APP_NAME = "AI Voice Studio"
 
 

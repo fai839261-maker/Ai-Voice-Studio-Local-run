@@ -646,7 +646,7 @@ class UpdatePages:
         if os.environ.get("AVS_NO_PROMPTS"):
             return
         # No question: the file was checked, so the software restarts at once. Work in progress is stopped; finished parts are kept.
-        if hasattr(self, "stop_everything_fast") and self.work_in_progress():
+        if hasattr(self, "stop_everything_fast") and (self.work_in_progress() or getattr(self, "optional_work", lambda: False)()):
             self.stop_everything_fast()
         QTimer.singleShot(700, self.restart_app)
 

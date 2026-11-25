@@ -1,4 +1,4 @@
-AI Voice Studio 0.23.0 - validation notes (honest)
+AI Voice Studio 0.23.1 - validation notes (honest)
 Checked in a Linux sandbox (offscreen window, stand-in audio player and start-up helper; no Windows, no GPU, no real voice models, no FFmpeg, no model sites):
 - all Python files compile; the real main window was built offscreen and the Clones page was rendered and looked at
 - sound-picture chooser: a 31 minute sound loads in about 2 s while the window stays responsive; zoom, move, wheel zoom around the mouse, minimum zoom,
@@ -74,3 +74,7 @@ a download without a valid signature is refused and deleted; pip is added only w
 asset list and SHA-256 are read correctly (also checked once against the real release page of the repository, read-only).
 NOT verified: the real Python installer on Windows (silent options come from Python's documented installer switches), the PowerShell signature check on Windows, the Visual C++ download and permission window,
 the ask-first popup on a PC that really has no Python, Git and the C++ build tools without WinGet (unchanged: they still need WinGet).
+
+0.23.1: sandbox only. Checked: optional background work (samples, voice preload, sample preview) no longer counts as work in the close question and is dropped on closing and before an update restart; the Library switch and the Settings switch
+are one setting and stay in step; real work (a voice-over being made) still asks. NOT verified: which of the three background flags was actually stuck on your PC when the message "voice samples are being prepared" appeared
+(after this change it can no longer block closing, whichever it was); the Library header layout on your screen size.

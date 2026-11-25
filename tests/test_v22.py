@@ -189,13 +189,34 @@ class Window(unittest.TestCase):
         self.assertFalse(w.sample_building)
         self.assertEqual(w.work_in_progress(), "")
 
+    def test_one_switch_for_automatic_samples(self):
+        w = self.w
+        scans = []
+        w.scan_samples = lambda force=False: scans.append(force)
+        self.assertFalse(w.lib_auto_samples.isChecked())                              # off by default, on the Library page too
+        w.lib_auto_samples.setChecked(True)
+        self.assertTrue(w.store.setting("auto_samples", False))
+        self.assertTrue(w.samples_check.isChecked())                                  # Settings shows the same state
+        w.samples_check.setChecked(False)
+        self.assertFalse(w.store.setting("auto_samples", True))
+        self.assertFalse(w.lib_auto_samples.isChecked())
+        self.assertIn("OFF", w.samples_note.text())
+        del w.scan_samples
+
     def test_the_close_question_names_the_work(self):
         w = self.w
-        w.sample_building = True
+        for flag in ("sample_building", "preloading", "preview_busy"):
+            setattr(w, flag, True)
+            try:
+                self.assertEqual(w.work_in_progress(), "")                   # optional background work never blocks closing
+                self.assertTrue(w.optional_work())
+            finally:
+                setattr(w, flag, False)
+        w.running = {"job": object()}
         try:
-            self.assertIn("voice samples", w.work_in_progress())
+            self.assertIn("voice-over", w.work_in_progress())                # real work still asks
         finally:
-            w.sample_building = False
+            w.running = {}
 
     def test_notice_after_automatic_repair(self):
         import avs_boot

@@ -1,12 +1,17 @@
-# AI Voice Studio 0.23.0 (COMPLETE project for Windows AND Mac, includes everything from 0.12.0 to 0.23.0)
+# AI Voice Studio 0.23.1 (COMPLETE project for Windows AND Mac, includes everything from 0.12.0 to 0.23.1)
 
 ## Get the Setup file (step by step)
 1. Unzip this ZIP. Open the folder.
-2. Double-click BUILD_INSTALLER.bat (as before). When it finishes, BuildOut\AI_Voice_Studio_Setup_0.23.0.exe is your installer.
+2. Double-click BUILD_INSTALLER.bat (as before). When it finishes, BuildOut\AI_Voice_Studio_Setup_0.23.1.exe is your installer.
 3. Run the Setup file. Your voices, models and settings are kept.
 
 ## Or update the installed software without a new Setup
 Settings > Updates > Install update file > ZIP file > choose this ZIP. The window stays alive while it is checked, then the software restarts by itself.
+
+## New in 0.23.1: closing is never blocked by background work, one switch for automatic samples (Windows)
+- **Voice samples on/off.** The Library page has an "Auto-prepare samples" switch and a "Prepare now" button; Settings > Performance shows the same switch. Off (the default) means samples are made only when you ask.
+- **Closing the software** asks "Something is still in progress" only for real work (a voice-over being made, a model download or setup, a backup). Quiet optional background work (samples, the preloaded voice engine, a sample preview) never blocks closing and is simply stopped.
+- The "Failed - see logs" on Check, and "Python 3.11 - name 'sys' is not defined" in the software check, came from the missing-import mistake fixed in 0.23.0. Versions 0.20.0 to 0.22.0 have it; install this update to remove it.
 
 ## New in 0.23.0: Python and pip on a fresh Windows PC, GitHub limit fixed (Windows)
 - **Fixed the crash "name 'sys' is not defined"** when preparing Python (and two more missing-import mistakes found by a full scan: one in main.py, one in the clone sample window).

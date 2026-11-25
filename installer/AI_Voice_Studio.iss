@@ -1,5 +1,5 @@
 #define MyAppName "AI Voice Studio"
-#define MyAppVersion "0.23.0"
+#define MyAppVersion "0.23.1"
 #define MyBuiltExe "AI_Voice_Studio.exe"
 #define MyAppExeName "Voice Studio V0.1.exe"
 #define MyShortcutName "Voice Studio V0.1"
@@ -22,7 +22,7 @@ RestartApplications=no
 Compression=lzma2
 SolidCompression=yes
 OutputDir=..\BuildOut
-OutputBaseFilename=AI_Voice_Studio_Setup_0.23.0
+OutputBaseFilename=AI_Voice_Studio_Setup_0.23.1
 WizardStyle=modern
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible

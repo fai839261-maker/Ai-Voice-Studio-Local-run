@@ -2244,9 +2244,29 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
 
         threading.Thread(target=work, daemon=True).start()
 
+    def set_auto_samples(self, on):
+        """The one on/off switch for automatic voice samples (Settings and Library show the same state). Off = only when you ask."""
+        on = bool(on)
+        self.store.set_setting("auto_samples", on)
+        for box in (getattr(self, "samples_check", None), getattr(self, "lib_auto_samples", None)):
+            if box is not None and box.isChecked() != on:
+                box.blockSignals(True)
+                box.setChecked(on)
+                box.blockSignals(False)
+        if on:
+            QTimer.singleShot(1500, self.scan_samples)
+            self.samples_say("Automatic voice samples are ON. They are prepared quietly when nothing else is running.")
+        else:
+            event = getattr(self, "_sample_stop", None)
+            if event is not None and self.sample_building:
+                event.set()
+            self.samples_say("Automatic voice samples are OFF. Samples are made only when you press Prepare voice samples now or ▶ on a voice.")
+
     def samples_say(self, text):
         if hasattr(self, "samples_note"):
             self.samples_note.setText(text)
+        if hasattr(self, "lib_count") and getattr(self, "_lib_base", ""):
+            self.lib_count.setText(self._lib_base + " · " + text)
 
     def prepare_samples_now(self):
         if self.sample_building:
@@ -3024,7 +3044,7 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
         lay.addWidget(self.preload_check)
         self.samples_check = QCheckBox("Prepare voice samples automatically in the background (off unless you turn it on)")
         self.samples_check.setChecked(bool(self.store.setting("auto_samples", False)))
-        self.samples_check.toggled.connect(lambda on: self.store.set_setting("auto_samples", bool(on)))
+        self.samples_check.toggled.connect(self.set_auto_samples)
         lay.addWidget(self.samples_check)
         lay.addLayout(actions(button("Prepare voice samples now", self.prepare_samples_now), button("Stop preparing", self.stop_samples)))
         self.samples_note = label("", "muted")
@@ -3777,9 +3797,11 @@ class StudioWindow(ChannelPages, UpdatePages, CardPages, ExtraPages, V3):
             items.append("a model download or setup is running")
         if self.pack_busy:
             items.append("a backup is being made")
-        if self.preloading or self.sample_building or self.preview_busy:
-            items.append("voice samples are being prepared (optional)")
-        return ", ".join(items)
+        return ", ".join(items)             # optional background work (samples, voice preload) is not "work": see optional_work()
+
+    def optional_work(self):
+        """Quiet background preparation that can simply be dropped: voice samples, the preloaded voice engine, a sample preview."""
+        return bool(self.preloading or self.sample_building or self.preview_busy)
 
     def stop_everything_fast(self):
         """Tell every worker to stop and end the helper processes at once. Finished parts and downloaded files are kept."""

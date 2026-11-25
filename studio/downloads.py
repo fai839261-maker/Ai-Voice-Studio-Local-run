@@ -57,7 +57,7 @@ def retry(fn,check=lambda:None,notice=lambda *_:None,attempts=ATTEMPTS):
 
 def request(url,headers=None,method='GET'):
     if not url.lower().startswith('https://'):raise ValueError('Only HTTPS model sources are supported.')
-    return urllib.request.Request(url,headers={'User-Agent':'AI-Voice-Studio/0.23.0','Accept-Encoding':'identity',**(headers or {})},method=method)
+    return urllib.request.Request(url,headers={'User-Agent':'AI-Voice-Studio/0.23.1','Accept-Encoding':'identity',**(headers or {})},method=method)
 
 class SecureRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self,req,fp,code,msg,headers,newurl):
