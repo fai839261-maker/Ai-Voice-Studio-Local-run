@@ -1,0 +1,58 @@
+AI Voice Studio 0.21.0 - validation notes (honest)
+Checked in a Linux sandbox (offscreen window, stand-in audio player and start-up helper; no Windows, no GPU, no real voice models, no FFmpeg, no model sites):
+- all Python files compile; the real main window was built offscreen and the Clones page was rendered and looked at
+- sound-picture chooser: a 31 minute sound loads in about 2 s while the window stays responsive; zoom, move, wheel zoom around the mouse, minimum zoom,
+  whole-file strip, a click keeps the chosen part (rendered and looked at)
+- update check in the background: the call returns at once, the event loop keeps running, a restart is requested without a question,
+  an old version is refused with a plain message (stand-in start-up helper; the real one was not available)
+- close clean-up: helpers and their sub-helpers ended, the restart copy kept, the program ends in 0.4 s even with a stuck non-daemon thread
+- clones: automatic unique name, default words, rename, duplicate names, every clone model resolves without a question; selected clone stays when the model changes
+- channel prompt counters show no limit
+NOT verified: the real restart and the Windows job that ends helpers, real audio playback, real video sound extraction (FFmpeg), updating from an installed
+0.11.2 (its old window may look frozen while it checks), installer build.
+
+COMPLETE PROJECT NOTES (0.16.0 merged into your real 0.11.2 project):
+- main.py, avs_boot.py, Build-Windows.ps1, requirements-gui.txt, the installer file and the other root files are YOUR real files; only the version number
+  (0.11.2 -> 0.16.0), three extra standard-library names in the build list and two new files in the packaged self-check were changed.
+- The installer was NOT built here (no Windows, no Inno Setup, no PyInstaller run). The older tests in tests/ were written for 0.11.2 and were not re-run.
+
+0.17.0 checks (sandbox, no GPU): hardware plan with fake cards (Quadro P1000 4 GB, GTX 1050 Ti, RTX 2060, RTX 3060, no card; 2-core / 8 GB PC);
+Studio Run on choices and notes in the real window with a fake 4 GB older card; a simulated generation through the real job code: 12 parts shared by a
+fast "card" helper (2 threads) and a slower "processor" helper (4 threads), finished sooner than either alone, parts returned in order; a simulated out-of-memory
+on the card redone on the processor with the card remembered as failed.
+NOT verified: real speed, real graphics memory use of any model, full-precision loading of the engines on an older card, AMD / Intel cards.
+
+0.18.0 checks (sandbox, 1 processor, no Windows): the measuring limiter held two busy helper processes to the asked limit (asked 24%, measured 25%), resumed them when closed,
+called the memory unload when memory was over the limit, paused only the graphics helper for a graphics limit, and ended a leftover engine helper from an older run;
+the Windows CPU-cap structure is the right size and values; the administrator start logic was run through 10 cases with stand-in Windows calls (first start, task present,
+task failing, already administrator, standard user, no loop, --no-admin); the real window still builds and the earlier checks pass.
+NOT verified: the Windows hard CPU cap on a real PC, the saved Windows task and the silent administrator start, the Task Manager figures with the limit at 75%,
+the graphics-card pausing on a real card. The source of the 45% used by the window itself is not known from here.
+
+0.19.0 checks (sandbox, no Windows, no GPU): the real window with a fake Quadro P1000 and Windows behaviour: Fish S2 card download button enabled and marked Download only, badges on the cards
+(Qwen 0.6B "Slow", F5 and Chatterbox Turbo starred), the Studio list with stars and "slow here", the Save and apply button; the Word checker package list; a new owner key proved to unlock, a wrong key
+refused, only the public key stored. NOT verified: the Word checker download on a real PC, the Fish S2 download (size, licence or sign-in rules of the source), the Qwen length safety on the real library,
+any real generation speed.
+
+0.19.1: the original owner key (valid format) was checked to match the restored public key (fingerprint c94b-fe75-7642-7ecb) and to unlock owner mode; the key made for 0.19.0 is refused.
+
+0.19.2: both owner keys unlock and stay unlocked after a restart; typed differently (lowercase, long dashes, spaces) still unlocks; a typo and a foreign key give plain reasons with the accepted fingerprints;
+an installed older update that carries only the 0.19.0 key refuses the original key (the cause found), and after the 0.19.2 update layer both keys work; the real start-up helper puts an older update aside,
+keeps a same-version or newer one. NOT verified on a real PC: which of these situations the owner's PC was in.
+
+0.20.0 (Mac edition), sandbox only, NO Mac available: recorded system answers for an M1 8 GB, M2 Pro 16 GB, M2 Max 64 GB, Intel i7 and i9 MacBooks and an M1 under Rosetta were parsed correctly; the plan per Mac,
+the Intel-Mac rule, the recommendations, the PC report, the Application Support data folder, the Mac hardware id, the device choice in the engines and the processor fallback of a failing Apple-graphics part all
+passed; the real window was built with simulated M2 Pro, M1 and Intel i9 (Run on choices, device per model, badges). The app recipe was run on Linux as a stand-in (same recipe without the Mac-only bundle step):
+the built program passed its own self-test (all files bundled, version, 18 models). Build-Mac.sh and BUILD_MAC.command passed a syntax check.
+NOT verified on a real Mac: the build, icon, signing, DMG, the Python 3.11 install (Homebrew / python.org pkg and the signature check), the engine installs, Metal speed and failures, the microphone permission,
+the Intel-Mac limits as stated, the GitHub macOS runner names.
+
+0.21.0 (Channels rebuilt, Windows): sandbox only, offscreen window, no Windows, no GPU, no real voice models.
+Checked: tests/test_v21.py (11 checks, run many times, also 12 runs in parallel): competitors with name only / link only / both, countries, optional sections joined into the spoken text,
+keyword search (any / all words, phrases), three passcodes (stored as a salted hash, wrong code refused, whole section / chosen channels / Prompts tab only), an old 0.20.0 channels file still loads
+with nothing dropped, the real window: logo saved and shown, master prompt and voice list gone from the dashboard, no Duplicate in Scripts, country chips and sections hidden until used, search results
+open the script with the words highlighted, Send to Voice Overs, a voice per script and one voice for all, Generate VO picks the right scripts, lock screen hides everything, Delete/Enter/Ctrl+C on lists,
+typing in the editor never deletes a script, a hidden page cannot be opened by keyboard. Offscreen screenshots of Channel Manager, Scripts, Voice Overs and the lock screen were looked at.
+NOT verified: a real voice-over made from the new Voice Overs tab (needs a downloaded voice model), Windows-only behaviour of the keyboard keys (the checks used simulated key presses), Open link in the real browser,
+the voice picker with real installed models (the sandbox has none, so it showed "No voice model is ready yet"), the installer build.
+The older tests in tests/ were written for 0.11.2: four checks in test_v60 fail the same way on the untouched 0.20.0 project (they were not changed).

@@ -1,0 +1,24 @@
+# Builds the Mac app and DMG on GitHub's Mac machines (so you do not need both kinds of Mac). Not tested; the runner names below may need updating:
+# see https://docs.github.com/actions/using-github-hosted-runners (an Apple Silicon runner such as macos-14, an Intel runner such as macos-15-intel).
+name: build-macos
+on: [workflow_dispatch]
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - runner: macos-14
+            arch: arm64
+          - runner: macos-15-intel
+            arch: x86_64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: chmod +x Build-Mac.sh && ./Build-Mac.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AI_Voice_Studio_mac_${{ matrix.arch }}
+          path: BuildOut/*

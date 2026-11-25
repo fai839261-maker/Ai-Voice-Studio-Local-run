@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+BuildOut/
+dist/
+*.spec
+*.tmp
+
+.build-venv/
+
+.build-venv/
+.iconset/
+.dmgstage/
+dist/
+build/
+BuildOut/

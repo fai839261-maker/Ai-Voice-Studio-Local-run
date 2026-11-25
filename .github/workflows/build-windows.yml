@@ -1,0 +1,50 @@
+name: Build Windows Inno Setup installer
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'main.py'
+      - 'studio/**'
+      - 'runtime/**'
+      - 'resources/**'
+      - 'installer/**'
+      - 'Build-Windows.ps1'
+      - 'requirements-gui.txt'
+      - '.github/workflows/build-windows.yml'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --yes --no-progress
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Build application and installer
+        shell: pwsh
+        run: ./Build-Windows.ps1
+      - name: Verify compiled resource check
+        shell: pwsh
+        run: |
+          $check=Join-Path $PWD 'BuildOut\packaged-self-check.json'
+          if (-not (Test-Path $check)) { throw "Missing packaged self-check result" }
+          Get-Content $check
+          if ((Get-Content $check -Raw | ConvertFrom-Json).result -ne 'PASS') { throw "Resource test did not pass" }
+      - name: Save Windows installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI-Voice-Studio-Windows-Setup
+          path: |
+            BuildOut/AI_Voice_Studio_Setup_0.21.0.exe
+            BuildOut/AI_Voice_Studio_Setup_0.21.0.exe.sha256.txt
+            BuildOut/AI_Voice_Studio_Update_0.21.0.zip
+          if-no-files-found: error

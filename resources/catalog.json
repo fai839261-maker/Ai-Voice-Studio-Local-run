@@ -1,0 +1,985 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "id": "piper",
+      "name": "Piper · Local ONNX",
+      "package": "piper-tts==1.4.2",
+      "kind": "tts",
+      "license_note": "Piper runtime: GPL-3.0; voice weights have separate voice-specific licenses. Check the voice's MODEL_CARD.",
+      "repo": "https://github.com/OHF-Voice/piper1-gpl",
+      "supports": [],
+      "device": "CPU",
+      "voices": [
+        {
+          "id": "en_GB-alan-medium",
+          "name": "Alan · British English",
+          "language": "English (UK)",
+          "prefix": "en/en_GB/alan/medium/",
+          "repo": "rhasspy/piper-voices"
+        },
+        {
+          "id": "en_US-lessac-medium",
+          "name": "Lessac · American English",
+          "language": "English (US)",
+          "prefix": "en/en_US/lessac/medium/",
+          "repo": "rhasspy/piper-voices"
+        }
+      ],
+      "profile": "onnx",
+      "module": "piper",
+      "torch": false,
+      "description": "Lightweight offline speech; individual voice downloads."
+    },
+    {
+      "id": "kokoro",
+      "name": "Kokoro 82M · ONNX",
+      "package": "kokoro-onnx==0.5.0",
+      "kind": "tts",
+      "license_note": "Kokoro model: Apache-2.0. Runtime: MIT. Check voice-specific terms.",
+      "repo": "https://github.com/thewh1teagle/kokoro-onnx",
+      "supports": [
+        "speed"
+      ],
+      "device": "CPU",
+      "voices": [
+        {
+          "id": "af_heart",
+          "name": "Heart · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_alloy",
+          "name": "Alloy · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_aoede",
+          "name": "Aoede · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_bella",
+          "name": "Bella · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_jessica",
+          "name": "Jessica · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_kore",
+          "name": "Kore · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_nicole",
+          "name": "Nicole · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_nova",
+          "name": "Nova · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_river",
+          "name": "River · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_sarah",
+          "name": "Sarah · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "af_sky",
+          "name": "Sky · American English · Female",
+          "language": "American English",
+          "gender": "Female"
+        },
+        {
+          "id": "am_adam",
+          "name": "Adam · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_echo",
+          "name": "Echo · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_eric",
+          "name": "Eric · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_fenrir",
+          "name": "Fenrir · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_liam",
+          "name": "Liam · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_michael",
+          "name": "Michael · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_onyx",
+          "name": "Onyx · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_puck",
+          "name": "Puck · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "am_santa",
+          "name": "Santa · American English · Male",
+          "language": "American English",
+          "gender": "Male"
+        },
+        {
+          "id": "bf_alice",
+          "name": "Alice · British English · Female",
+          "language": "British English",
+          "gender": "Female"
+        },
+        {
+          "id": "bf_emma",
+          "name": "Emma · British English · Female",
+          "language": "British English",
+          "gender": "Female"
+        },
+        {
+          "id": "bf_isabella",
+          "name": "Isabella · British English · Female",
+          "language": "British English",
+          "gender": "Female"
+        },
+        {
+          "id": "bf_lily",
+          "name": "Lily · British English · Female",
+          "language": "British English",
+          "gender": "Female"
+        },
+        {
+          "id": "bm_daniel",
+          "name": "Daniel · British English · Male",
+          "language": "British English",
+          "gender": "Male"
+        },
+        {
+          "id": "bm_fable",
+          "name": "Fable · British English · Male",
+          "language": "British English",
+          "gender": "Male"
+        },
+        {
+          "id": "bm_george",
+          "name": "George · British English · Male",
+          "language": "British English",
+          "gender": "Male"
+        },
+        {
+          "id": "bm_lewis",
+          "name": "Lewis · British English · Male",
+          "language": "British English",
+          "gender": "Male"
+        },
+        {
+          "id": "jf_alpha",
+          "name": "Alpha · Japanese · Female",
+          "language": "Japanese",
+          "gender": "Female"
+        },
+        {
+          "id": "jf_gongitsune",
+          "name": "Gongitsune · Japanese · Female",
+          "language": "Japanese",
+          "gender": "Female"
+        },
+        {
+          "id": "jf_nezumi",
+          "name": "Nezumi · Japanese · Female",
+          "language": "Japanese",
+          "gender": "Female"
+        },
+        {
+          "id": "jf_tebukuro",
+          "name": "Tebukuro · Japanese · Female",
+          "language": "Japanese",
+          "gender": "Female"
+        },
+        {
+          "id": "jm_kumo",
+          "name": "Kumo · Japanese · Male",
+          "language": "Japanese",
+          "gender": "Male"
+        },
+        {
+          "id": "zf_xiaobei",
+          "name": "Xiaobei · Mandarin Chinese · Female",
+          "language": "Mandarin Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "zf_xiaoni",
+          "name": "Xiaoni · Mandarin Chinese · Female",
+          "language": "Mandarin Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "zf_xiaoxiao",
+          "name": "Xiaoxiao · Mandarin Chinese · Female",
+          "language": "Mandarin Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "zf_xiaoyi",
+          "name": "Xiaoyi · Mandarin Chinese · Female",
+          "language": "Mandarin Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "zm_yunjian",
+          "name": "Yunjian · Mandarin Chinese · Male",
+          "language": "Mandarin Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "zm_yunxi",
+          "name": "Yunxi · Mandarin Chinese · Male",
+          "language": "Mandarin Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "zm_yunxia",
+          "name": "Yunxia · Mandarin Chinese · Male",
+          "language": "Mandarin Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "zm_yunyang",
+          "name": "Yunyang · Mandarin Chinese · Male",
+          "language": "Mandarin Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "ef_dora",
+          "name": "Dora · Spanish · Female",
+          "language": "Spanish",
+          "gender": "Female"
+        },
+        {
+          "id": "em_alex",
+          "name": "Alex · Spanish · Male",
+          "language": "Spanish",
+          "gender": "Male"
+        },
+        {
+          "id": "em_santa",
+          "name": "Santa · Spanish · Male",
+          "language": "Spanish",
+          "gender": "Male"
+        },
+        {
+          "id": "ff_siwis",
+          "name": "Siwis · French · Female",
+          "language": "French",
+          "gender": "Female"
+        },
+        {
+          "id": "hf_alpha",
+          "name": "Alpha · Hindi · Female",
+          "language": "Hindi",
+          "gender": "Female"
+        },
+        {
+          "id": "hf_beta",
+          "name": "Beta · Hindi · Female",
+          "language": "Hindi",
+          "gender": "Female"
+        },
+        {
+          "id": "hm_omega",
+          "name": "Omega · Hindi · Male",
+          "language": "Hindi",
+          "gender": "Male"
+        },
+        {
+          "id": "hm_psi",
+          "name": "Psi · Hindi · Male",
+          "language": "Hindi",
+          "gender": "Male"
+        },
+        {
+          "id": "if_sara",
+          "name": "Sara · Italian · Female",
+          "language": "Italian",
+          "gender": "Female"
+        },
+        {
+          "id": "im_nicola",
+          "name": "Nicola · Italian · Male",
+          "language": "Italian",
+          "gender": "Male"
+        },
+        {
+          "id": "pf_dora",
+          "name": "Dora · Brazilian Portuguese · Female",
+          "language": "Brazilian Portuguese",
+          "gender": "Female"
+        },
+        {
+          "id": "pm_alex",
+          "name": "Alex · Brazilian Portuguese · Male",
+          "language": "Brazilian Portuguese",
+          "gender": "Male"
+        },
+        {
+          "id": "pm_santa",
+          "name": "Santa · Brazilian Portuguese · Male",
+          "language": "Brazilian Portuguese",
+          "gender": "Male"
+        }
+      ],
+      "files": [
+        {
+          "name": "kokoro-v1.0.onnx",
+          "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/kokoro-v1.0.onnx"
+        },
+        {
+          "name": "voices-v1.0.bin",
+          "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/voices-v1.0.bin"
+        }
+      ],
+      "profile": "onnx",
+      "module": "kokoro_onnx",
+      "torch": false,
+      "description": "54 voice catalog · 9 languages · automatic voice-language routing."
+    },
+    {
+      "id": "chatterbox",
+      "name": "Chatterbox · Voice Cloning (experimental)",
+      "package": "chatterbox-tts==0.1.7",
+      "kind": "clone",
+      "license_note": "Check Resemble AI's repository and model license before use. Explicit authorization is required to clone any voice.",
+      "repo": "https://github.com/resemble-ai/chatterbox",
+      "hf_repo": "ResembleAI/chatterbox",
+      "supports": [
+        "exaggeration",
+        "cfg_weight"
+      ],
+      "device": "CPU / CUDA",
+      "voices": [],
+      "files": [
+        {
+          "name": "ve.safetensors",
+          "url": "https://huggingface.co/ResembleAI/chatterbox/resolve/main/ve.safetensors"
+        },
+        {
+          "name": "t3_cfg.safetensors",
+          "url": "https://huggingface.co/ResembleAI/chatterbox/resolve/main/t3_cfg.safetensors"
+        },
+        {
+          "name": "s3gen.safetensors",
+          "url": "https://huggingface.co/ResembleAI/chatterbox/resolve/main/s3gen.safetensors"
+        },
+        {
+          "name": "tokenizer.json",
+          "url": "https://huggingface.co/ResembleAI/chatterbox/resolve/main/tokenizer.json"
+        },
+        {
+          "name": "conds.pt",
+          "url": "https://huggingface.co/ResembleAI/chatterbox/resolve/main/conds.pt"
+        }
+      ],
+      "profile": "chatterbox",
+      "module": "chatterbox",
+      "torch": true,
+      "description": "Expressive English cloning with authorized reference audio.",
+      "languages": [
+        "English"
+      ],
+      "language_note": "English"
+    },
+    {
+      "id": "f5",
+      "name": "F5-TTS · Voice Cloning (experimental)",
+      "package": "f5-tts==1.1.11",
+      "kind": "clone",
+      "license_note": "F5-TTS model checkpoints may have non-commercial restrictions. Review the exact repository and checkpoint license.",
+      "repo": "https://github.com/SWivid/F5-TTS",
+      "hf_repo": "SWivid/F5-TTS",
+      "supports": [
+        "speed",
+        "ref_text"
+      ],
+      "device": "CPU / CUDA",
+      "voices": [],
+      "files": [
+        {
+          "name": "model_1250000.safetensors",
+          "url": "https://huggingface.co/SWivid/F5-TTS/resolve/main/F5TTS_v1_Base/model_1250000.safetensors"
+        },
+        {
+          "name": "vocos/config.yaml",
+          "url": "https://huggingface.co/charactr/vocos-mel-24khz/resolve/main/config.yaml"
+        },
+        {
+          "name": "vocos/pytorch_model.bin",
+          "url": "https://huggingface.co/charactr/vocos-mel-24khz/resolve/main/pytorch_model.bin"
+        }
+      ],
+      "profile": "f5",
+      "module": "f5_tts",
+      "torch": true,
+      "description": "Reference-based speech; transcript required. Official checkpoint license restrictions apply.",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "language_note": "English / Chinese"
+    },
+    {
+      "id": "qwen06bclone",
+      "name": "Qwen3-TTS 0.6B Base",
+      "package": "qwen-tts==0.1.1",
+      "module": "qwen_tts",
+      "profile": "qwen",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/QwenLM/Qwen3-TTS",
+      "hf_repo": "Qwen/Qwen3-TTS-12Hz-0.6B-Base",
+      "snapshot": true,
+      "license_note": "Apache-2.0 model; confirm repository terms.",
+      "supports": [
+        "ref_text"
+      ],
+      "voices": [],
+      "description": "Reference voice cloning; matching transcript required.",
+      "languages": [
+        "Auto",
+        "Chinese",
+        "English",
+        "Japanese",
+        "Korean",
+        "German",
+        "French",
+        "Russian",
+        "Portuguese",
+        "Spanish",
+        "Italian"
+      ],
+      "language_note": "10 languages; Auto or explicit selection"
+    },
+    {
+      "id": "qwen06bvoice",
+      "name": "Qwen3-TTS 0.6B CustomVoice",
+      "package": "qwen-tts==0.1.1",
+      "module": "qwen_tts",
+      "profile": "qwen",
+      "kind": "tts",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/QwenLM/Qwen3-TTS",
+      "hf_repo": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "snapshot": true,
+      "license_note": "Apache-2.0 model; confirm repository terms.",
+      "supports": [],
+      "voices": [
+        {
+          "id": "Ryan",
+          "name": "Ryan · English · Male",
+          "language": "English",
+          "gender": "Male"
+        },
+        {
+          "id": "Aiden",
+          "name": "Aiden · English · Male",
+          "language": "English",
+          "gender": "Male"
+        },
+        {
+          "id": "Vivian",
+          "name": "Vivian · Chinese · Female",
+          "language": "Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "Serena",
+          "name": "Serena · Chinese · Female",
+          "language": "Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "Dylan",
+          "name": "Dylan · Chinese · Male",
+          "language": "Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "Eric",
+          "name": "Eric · Chinese · Male",
+          "language": "Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "Ono_Anna",
+          "name": "Ono Anna · Japanese · Female",
+          "language": "Japanese",
+          "gender": "Female"
+        },
+        {
+          "id": "Sohee",
+          "name": "Sohee · Korean · Female",
+          "language": "Korean",
+          "gender": "Female"
+        },
+        {
+          "id": "Uncle_Fu",
+          "name": "Uncle Fu · Chinese · Male",
+          "language": "Chinese",
+          "gender": "Male"
+        }
+      ],
+      "description": "Nine built-in speakers, multilingual speech.",
+      "languages": [
+        "Auto",
+        "Chinese",
+        "English",
+        "Japanese",
+        "Korean",
+        "German",
+        "French",
+        "Russian",
+        "Portuguese",
+        "Spanish",
+        "Italian"
+      ]
+    },
+    {
+      "id": "qwen17bclone",
+      "name": "Qwen3-TTS 1.7B Base",
+      "package": "qwen-tts==0.1.1",
+      "module": "qwen_tts",
+      "profile": "qwen",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/QwenLM/Qwen3-TTS",
+      "hf_repo": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "snapshot": true,
+      "license_note": "Apache-2.0 model; confirm repository terms.",
+      "supports": [
+        "ref_text"
+      ],
+      "voices": [],
+      "description": "Reference voice cloning; matching transcript required.",
+      "languages": [
+        "Auto",
+        "Chinese",
+        "English",
+        "Japanese",
+        "Korean",
+        "German",
+        "French",
+        "Russian",
+        "Portuguese",
+        "Spanish",
+        "Italian"
+      ],
+      "language_note": "10 languages; Auto or explicit selection"
+    },
+    {
+      "id": "qwen17bvoice",
+      "name": "Qwen3-TTS 1.7B CustomVoice",
+      "package": "qwen-tts==0.1.1",
+      "module": "qwen_tts",
+      "profile": "qwen",
+      "kind": "tts",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/QwenLM/Qwen3-TTS",
+      "hf_repo": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "snapshot": true,
+      "license_note": "Apache-2.0 model; confirm repository terms.",
+      "supports": [
+        "emotion_text"
+      ],
+      "voices": [
+        {
+          "id": "Ryan",
+          "name": "Ryan · English · Male",
+          "language": "English",
+          "gender": "Male"
+        },
+        {
+          "id": "Aiden",
+          "name": "Aiden · English · Male",
+          "language": "English",
+          "gender": "Male"
+        },
+        {
+          "id": "Vivian",
+          "name": "Vivian · Chinese · Female",
+          "language": "Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "Serena",
+          "name": "Serena · Chinese · Female",
+          "language": "Chinese",
+          "gender": "Female"
+        },
+        {
+          "id": "Dylan",
+          "name": "Dylan · Chinese · Male",
+          "language": "Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "Eric",
+          "name": "Eric · Chinese · Male",
+          "language": "Chinese",
+          "gender": "Male"
+        },
+        {
+          "id": "Ono_Anna",
+          "name": "Ono Anna · Japanese · Female",
+          "language": "Japanese",
+          "gender": "Female"
+        },
+        {
+          "id": "Sohee",
+          "name": "Sohee · Korean · Female",
+          "language": "Korean",
+          "gender": "Female"
+        },
+        {
+          "id": "Uncle_Fu",
+          "name": "Uncle Fu · Chinese · Male",
+          "language": "Chinese",
+          "gender": "Male"
+        }
+      ],
+      "description": "Nine built-in speakers, multilingual speech.",
+      "languages": [
+        "Auto",
+        "Chinese",
+        "English",
+        "Japanese",
+        "Korean",
+        "German",
+        "French",
+        "Russian",
+        "Portuguese",
+        "Spanish",
+        "Italian"
+      ]
+    },
+    {
+      "id": "turbo",
+      "name": "Chatterbox Turbo",
+      "package": "chatterbox-tts==0.1.7",
+      "module": "chatterbox.tts_turbo",
+      "profile": "chatterbox",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/resemble-ai/chatterbox",
+      "hf_repo": "ResembleAI/chatterbox-turbo",
+      "snapshot": true,
+      "license_note": "Review MIT model and repository terms.",
+      "supports": [],
+      "voices": [],
+      "description": "Fast expressive English cloning with paralinguistic tags.",
+      "languages": [
+        "English"
+      ],
+      "language_note": "English"
+    },
+    {
+      "id": "voxcpm",
+      "name": "VoxCPM 1.5",
+      "package": "voxcpm==1.5.0",
+      "module": "voxcpm",
+      "profile": "voxcpm",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/OpenBMB/VoxCPM",
+      "hf_repo": "openbmb/VoxCPM1.5",
+      "snapshot": true,
+      "license_note": "Review Apache-2.0 repository terms.",
+      "supports": [
+        "ref_text"
+      ],
+      "voices": [],
+      "description": "English/Chinese cloning, matching transcript required.",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "language_note": "English / Chinese"
+    },
+    {
+      "id": "openf5",
+      "name": "OpenF5-TTS Base (experimental)",
+      "package": "f5-tts==1.1.11",
+      "kind": "clone",
+      "license_note": "OpenF5 model repository declares Apache-2.0. Review the exact checkpoint, runtime and voice license.",
+      "repo": "https://github.com/SWivid/F5-TTS",
+      "hf_repo": "mrfakename/OpenF5-TTS-Base",
+      "supports": [
+        "speed",
+        "ref_text"
+      ],
+      "device": "CPU / CUDA",
+      "voices": [],
+      "profile": "f5",
+      "module": "f5_tts",
+      "torch": true,
+      "description": "OpenF5 checkpoint with published tokenizer and architecture; matching transcript required.",
+      "snapshot": true,
+      "extra_files": [
+        {
+          "name": "vocos/config.yaml",
+          "url": "https://huggingface.co/charactr/vocos-mel-24khz/resolve/main/config.yaml"
+        },
+        {
+          "name": "vocos/pytorch_model.bin",
+          "url": "https://huggingface.co/charactr/vocos-mel-24khz/resolve/main/pytorch_model.bin"
+        }
+      ],
+      "languages": [
+        "English"
+      ],
+      "language_note": "Checkpoint-dependent"
+    },
+    {
+      "id": "indextts2",
+      "name": "IndexTTS 2",
+      "package": "git+https://github.com/index-tts/index-tts.git@v2.5.0",
+      "module": "indextts.infer_v2",
+      "profile": "indextts2",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/index-tts/index-tts",
+      "hf_repo": "IndexTeam/IndexTTS-2",
+      "snapshot": true,
+      "license_note": "Bilibili model license: review restrictions before commercial use.",
+      "supports": [
+        "emotion_text",
+        "emotion_weight",
+        "temperature"
+      ],
+      "voices": [],
+      "description": "Expressive English and Chinese cloning.",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "language_note": "English / Chinese"
+    },
+    {
+      "id": "dia",
+      "name": "Dia 1.6B",
+      "package": "transformers==4.55.4",
+      "module": "transformers.models.dia",
+      "profile": "dia",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/nari-labs/dia",
+      "hf_repo": "nari-labs/Dia-1.6B-0626",
+      "snapshot": true,
+      "license_note": "Review Apache-2.0 checkpoint terms.",
+      "supports": [
+        "ref_text",
+        "temperature",
+        "guidance"
+      ],
+      "voices": [],
+      "description": "English dialogue and reference cloning.",
+      "languages": [
+        "English"
+      ],
+      "language_note": "English dialogue"
+    },
+    {
+      "id": "qwen17bdesign",
+      "name": "Qwen3-TTS 1.7B VoiceDesign",
+      "package": "qwen-tts==0.1.1",
+      "module": "qwen_tts",
+      "profile": "qwen",
+      "kind": "design",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/QwenLM/Qwen3-TTS",
+      "hf_repo": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+      "snapshot": true,
+      "license_note": "Apache-2.0 model; confirm repository terms.",
+      "supports": [
+        "voice_description",
+        "emotion_text"
+      ],
+      "voices": [],
+      "description": "Create a brand-new voice from a written description.",
+      "languages": [
+        "Auto",
+        "Chinese",
+        "English",
+        "Japanese",
+        "Korean",
+        "German",
+        "French",
+        "Russian",
+        "Portuguese",
+        "Spanish",
+        "Italian"
+      ],
+      "lang_option": true,
+      "language_note": "10 languages"
+    },
+    {
+      "id": "xtts2",
+      "name": "XTTS-v2 · Voice Cloning",
+      "package": "coqui-tts==0.28.0",
+      "module": "TTS",
+      "profile": "xtts",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/idiap/coqui-ai-TTS",
+      "hf_repo": "coqui/XTTS-v2",
+      "snapshot": true,
+      "license_note": "Coqui Public Model License: non-commercial use only unless the licensor agrees otherwise.",
+      "supports": [
+        "temperature"
+      ],
+      "voices": [],
+      "description": "16 languages, clones a voice from a short clip.",
+      "languages": [
+        "English",
+        "Spanish",
+        "French",
+        "German",
+        "Italian",
+        "Portuguese",
+        "Polish",
+        "Turkish",
+        "Russian",
+        "Dutch",
+        "Czech",
+        "Arabic",
+        "Chinese",
+        "Japanese",
+        "Hungarian",
+        "Korean"
+      ],
+      "lang_option": true,
+      "language_note": "16 languages"
+    },
+    {
+      "id": "styletts2",
+      "name": "StyleTTS 2 · Voice Cloning (experimental)",
+      "package": "styletts2==0.1.6",
+      "module": "styletts2",
+      "profile": "styletts2",
+      "kind": "clone",
+      "torch": true,
+      "device": "CPU / CUDA",
+      "repo": "https://github.com/yl4579/StyleTTS2",
+      "hf_repo": "yl4579/StyleTTS2-LibriTTS",
+      "snapshot": true,
+      "license_note": "Pretrained weights require permission from the people whose voices are cloned and disclosure of synthetic speech; see the model repository.",
+      "supports": [
+        "style_alpha",
+        "style_beta",
+        "diffusion_steps",
+        "embedding_scale"
+      ],
+      "voices": [],
+      "description": "English style and prosody control; clone from a short clip.",
+      "languages": [
+        "English"
+      ],
+      "language_note": "English"
+    },
+    {
+      "id": "fishs2",
+      "name": "Fish Audio S2 Pro · Expressive",
+      "package": "git+https://github.com/fishaudio/fish-speech",
+      "module": "fish_speech",
+      "profile": "fish",
+      "kind": "clone",
+      "torch": true,
+      "device": "CUDA",
+      "repo": "https://github.com/fishaudio/fish-speech",
+      "hf_repo": "fishaudio/s2-pro",
+      "snapshot": true,
+      "license_note": "Fish Audio Research License: research and non-commercial use free; commercial use needs a separate licence.",
+      "supports": [],
+      "voices": [],
+      "description": "Expressive speech with inline tags. Needs a 24 GB NVIDIA GPU on Linux or WSL.",
+      "languages": [
+        "English",
+        "Chinese",
+        "Japanese",
+        "Korean"
+      ],
+      "requires": {
+        "os": "linux",
+        "vram_gb": 24,
+        "note": "Fish Audio S2 Pro officially needs about 24 GB of graphics memory and Linux or WSL. It cannot run in this Windows app."
+      },
+      "language_note": "English / Chinese / Japanese / Korean"
+    },
+    {
+      "id": "wordcheck",
+      "name": "Word checker · Whisper",
+      "package": "faster-whisper==1.1.1",
+      "module": "wordcheck",
+      "profile": "whisper",
+      "kind": "check",
+      "torch": false,
+      "device": "CPU",
+      "repo": "https://github.com/SYSTRAN/faster-whisper",
+      "hf_repo": "Systran/faster-whisper-base.en",
+      "snapshot": true,
+      "license_note": "MIT license (faster-whisper and Whisper models).",
+      "supports": [],
+      "voices": [],
+      "description": "Turns finished audio back into text, so every word of your script can be checked."
+    }
+  ],
+  "discovery": []
+}
